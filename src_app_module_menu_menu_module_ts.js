@@ -82,13 +82,16 @@ __webpack_require__.r(__webpack_exports__);
 class ApiService {
     constructor(http) {
         this.http = http;
-        this.baseUrl = "http://localhost:3000/menu";
+        this.baseUrl = 'http://localhost:3000/menu';
     }
     getAll() {
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('/vyatech/assets/data/db.json');
+            // Use absolute path for GitHub Pages
+            return this.http.get('https://muhilesh-kumar.github.io/vyatech/assets/data/db.json');
         }
-        return this.http.get(this.baseUrl);
+        else {
+            return this.http.get(this.baseUrl);
+        }
     }
     create(menu) {
         return this.http.post(this.baseUrl, menu);
@@ -250,7 +253,7 @@ function MenuComponent_div_14_Template(rf, ctx) { if (rf & 1) {
 class MenuComponent {
     constructor(apiService) {
         this.apiService = apiService;
-        this.options = ['Invoice', 'Seller', 'Buyer', 'Mukilesh'];
+        this.options = ['Invoice', 'Seller', 'Buyer', "Mukilesh"];
         this.selectedOption = '';
         this.tableData = {};
         this.existingRecordId = {};
@@ -265,9 +268,7 @@ class MenuComponent {
             const filtered = data.find((d) => d.application === type);
             if (filtered) {
                 this.tableData[type] = filtered.subscription.map((item) => (Object.assign(Object.assign({}, item), { commaValue: item.type === 'array'
-                        ? Array.isArray(item.value)
-                            ? item.value.join(', ')
-                            : item.value
+                        ? (Array.isArray(item.value) ? item.value.join(', ') : item.value)
                         : '' })));
                 this.existingRecordId[type] = filtered.id;
             }
@@ -279,7 +280,12 @@ class MenuComponent {
         });
     }
     addRow(type) {
-        this.tableData[type].push({ key: '', type: '', value: '', commaValue: '' });
+        this.tableData[type].push({
+            key: '',
+            type: '',
+            value: '',
+            commaValue: ''
+        });
     }
     onKeyTypeChange(type, rowIndex) {
         const row = this.tableData[type][rowIndex];
@@ -300,11 +306,6 @@ class MenuComponent {
             .filter((v) => v !== '');
     }
     submitTable(type) {
-        // Skip saving if running from GitHub Pages
-        if (location.hostname === 'muhilesh-kumar.github.io') {
-            alert('Read-only mode on GitHub Pages.');
-            return;
-        }
         const payload = {
             application: type,
             subscription: this.tableData[type].map(d => ({
@@ -325,11 +326,6 @@ class MenuComponent {
         }
     }
     deletecommand(index) {
-        // Skip deleting if running from GitHub Pages
-        if (location.hostname === 'muhilesh-kumar.github.io') {
-            alert('Read-only mode on GitHub Pages.');
-            return;
-        }
         this.tableData[this.selectedOption].splice(index, 1);
         const payload = {
             application: this.selectedOption,
