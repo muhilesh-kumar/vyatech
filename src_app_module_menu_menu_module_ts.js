@@ -84,11 +84,15 @@ class ApiService {
         this.http = http;
         this.baseUrl = "http://localhost:3000/menu";
     }
+    getAll() {
+        // Use local db.json when deployed on GitHub Pages
+        if (location.hostname === 'muhilesh-kumar.github.io') {
+            return this.http.get('assets/data/menu.json'); // <-- static read-only JSON
+        }
+        return this.http.get(this.baseUrl);
+    }
     create(menu) {
         return this.http.post(this.baseUrl, menu);
-    }
-    getAll() {
-        return this.http.get(this.baseUrl);
     }
     update(id, payload) {
         return this.http.put(`${this.baseUrl}/${id}`, payload);
@@ -247,7 +251,7 @@ function MenuComponent_div_14_Template(rf, ctx) { if (rf & 1) {
 class MenuComponent {
     constructor(apiService) {
         this.apiService = apiService;
-        this.options = ['Invoice', 'Seller', 'Buyer', "Mukilesh"];
+        this.options = ['Invoice', 'Seller', 'Buyer', 'Mukilesh'];
         this.selectedOption = '';
         this.tableData = {};
         this.existingRecordId = {};
@@ -259,10 +263,12 @@ class MenuComponent {
     }
     loadTableData(type) {
         this.apiService.getAll().subscribe((data) => {
-            const filtered = data.find(d => d.application === type);
+            const filtered = data.find((d) => d.application === type);
             if (filtered) {
                 this.tableData[type] = filtered.subscription.map((item) => (Object.assign(Object.assign({}, item), { commaValue: item.type === 'array'
-                        ? (Array.isArray(item.value) ? item.value.join(', ') : item.value)
+                        ? Array.isArray(item.value)
+                            ? item.value.join(', ')
+                            : item.value
                         : '' })));
                 this.existingRecordId[type] = filtered.id;
             }
@@ -274,12 +280,7 @@ class MenuComponent {
         });
     }
     addRow(type) {
-        this.tableData[type].push({
-            key: '',
-            type: '',
-            value: '',
-            commaValue: ''
-        });
+        this.tableData[type].push({ key: '', type: '', value: '', commaValue: '' });
     }
     onKeyTypeChange(type, rowIndex) {
         const row = this.tableData[type][rowIndex];
@@ -300,6 +301,11 @@ class MenuComponent {
             .filter((v) => v !== '');
     }
     submitTable(type) {
+        // Skip saving if running from GitHub Pages
+        if (location.hostname === 'muhilesh-kumar.github.io') {
+            alert('Read-only mode on GitHub Pages.');
+            return;
+        }
         const payload = {
             application: type,
             subscription: this.tableData[type].map(d => ({
@@ -320,6 +326,11 @@ class MenuComponent {
         }
     }
     deletecommand(index) {
+        // Skip deleting if running from GitHub Pages
+        if (location.hostname === 'muhilesh-kumar.github.io') {
+            alert('Read-only mode on GitHub Pages.');
+            return;
+        }
         this.tableData[this.selectedOption].splice(index, 1);
         const payload = {
             application: this.selectedOption,
