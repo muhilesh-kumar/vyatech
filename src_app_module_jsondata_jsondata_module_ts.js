@@ -295,7 +295,7 @@ class MyserviceService {
     }
     getitems() {
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('./assets/data/db.json');
+            return this.http.get('assets/data/db.json');
         }
         else {
             return this.http.get(this.baseURL);
