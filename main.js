@@ -41,16 +41,16 @@ const navItems = [
     //   url: "/details",
     //   icon: "icon-pencil"
     // },
-    {
-        name: "Menu",
-        url: "/menu",
-        icon: "icon-pencil"
-    },
-    {
-        name: "Expense",
-        url: "/expense",
-        icon: "icon-pencil"
-    },
+    // {
+    //   name: "Menu",
+    //   url: "/menu",
+    //   icon: "icon-pencil"
+    // },
+    // {
+    //   name: "Expense",
+    //   url: "/expense",
+    //   icon: "icon-pencil"
+    // },
     {
         name: "Crud",
         url: "/crud",
