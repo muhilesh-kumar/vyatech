@@ -133,7 +133,7 @@ class JsonIdComponent {
     }
     getusers() {
         this.myservice.getitems().subscribe((response) => {
-            this.users = response;
+            this.users = response.users;
         });
     }
     update() {
