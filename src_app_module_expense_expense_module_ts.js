@@ -114,7 +114,12 @@ class ApiService {
         return this.http.post(this.baseUrl, menu);
     }
     getAll() {
-        return this.http.get(this.baseUrl);
+        if (location.hostname === 'muhilesh-kumar.github.io') {
+            return this.http.get('assets/data/db.json');
+        }
+        else {
+            return this.http.get(this.baseUrl);
+        }
     }
     update(id, expense) {
         return this.http.put(`${this.baseUrl}/${id}`, expense);

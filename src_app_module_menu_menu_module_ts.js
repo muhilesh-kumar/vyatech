@@ -58,9 +58,13 @@ class MenuModule {
 MenuModule.ɵfac = function MenuModule_Factory(t) { return new (t || MenuModule)(); };
 MenuModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: MenuModule });
 MenuModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
-        _menu_routing_module__WEBPACK_IMPORTED_MODULE_0__.MenuRoutingModule, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule] });
+        _menu_routing_module__WEBPACK_IMPORTED_MODULE_0__.MenuRoutingModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormsModule,
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](MenuModule, { declarations: [_menu_menu_component__WEBPACK_IMPORTED_MODULE_1__.MenuComponent], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
-        _menu_routing_module__WEBPACK_IMPORTED_MODULE_0__.MenuRoutingModule, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule] }); })();
+        _menu_routing_module__WEBPACK_IMPORTED_MODULE_0__.MenuRoutingModule,
+        _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormsModule,
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpClientModule] }); })();
 
 
 /***/ }),
@@ -85,12 +89,11 @@ class ApiService {
         this.baseUrl = 'http://localhost:3000/menu';
     }
     getAll() {
-        if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('https://muhilesh-kumar.github.io/vyatech/assets/data/db.json');
-        }
-        else {
-            return this.http.get(this.baseUrl);
-        }
+        const isGitHub = location.hostname === 'muhilesh-kumar.github.io';
+        const jsonPath = isGitHub
+            ? 'assets/data/db.json' // Works automatically with --base-href="/vyatech/"
+            : this.baseUrl;
+        return this.http.get(jsonPath);
     }
     create(menu) {
         return this.http.post(this.baseUrl, menu);
