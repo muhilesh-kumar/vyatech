@@ -294,7 +294,14 @@ class MyserviceService {
         this.baseURL = "http://localhost:3000/users";
     }
     getitems() {
-        return this.http.get(this.baseURL);
+        if (location.hostname === 'muhilesh-kumar.github.io') {
+            // Use static JSON when hosted on GitHub Pages
+            return this.http.get('assets/data.json');
+        }
+        else {
+            // Use real backend locally
+            return this.http.get(this.baseURL);
+        }
     }
     createUser(users) {
         return this.http.post(this.baseURL, users);
