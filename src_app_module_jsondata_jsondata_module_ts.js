@@ -295,11 +295,9 @@ class MyserviceService {
     }
     getitems() {
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            // Use static JSON when hosted on GitHub Pages
-            return this.http.get('assets/data.json');
+            return this.http.get('./assets/data.json');
         }
         else {
-            // Use real backend locally
             return this.http.get(this.baseURL);
         }
     }
@@ -375,7 +373,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jsondata_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jsondata-routing.module */ 74919);
 /* harmony import */ var _json_id_json_id_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./json-id/json-id.component */ 38449);
 /* harmony import */ var primeng_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primeng/dialog */ 33489);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 28784);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+
 
 
 
@@ -388,10 +388,10 @@ JsondataModule.ɵfac = function JsondataModule_Factory(t) { return new (t || Jso
 JsondataModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: JsondataModule });
 JsondataModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
         _jsondata_routing_module__WEBPACK_IMPORTED_MODULE_0__.JsondataRoutingModule, primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
-        primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule] });
+        primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClientModule] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](JsondataModule, { declarations: [_json_id_json_id_component__WEBPACK_IMPORTED_MODULE_1__.JsonIdComponent], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
         _jsondata_routing_module__WEBPACK_IMPORTED_MODULE_0__.JsondataRoutingModule, primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
-        primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule] }); })();
+        primeng_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClientModule] }); })();
 
 
 /***/ })
