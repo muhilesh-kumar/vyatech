@@ -1,0 +1,117 @@
+<div style="max-width: 210mm; width: 100%; min-height: 100vh; background-color: white; margin: 0 auto; font-family: Arial, sans-serif; font-size: clamp(12px, 2.5vw, 14px); padding: 5%; box-sizing: border-box;">
+  <div style="padding: 1rem; background-color: white;">
+    <form>
+      <!-- Header (Flex on Desktop, Stacked on Mobile) -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 1rem;">
+        <!-- Company Info -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 1rem;">
+          <p style="margin-bottom: 0.25rem; font-weight: 600;">{{ companyName }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ gMail }}, {{ contactNumber }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ address }}</p>
+          <p style="margin-bottom: 0;"><strong>{{ customerID }}</strong></p>
+        </div>
+        <!-- Image -->
+        <div style="flex-shrink: 0; margin-bottom: 1rem;">
+          <img src="{{ image }}" alt="staff photo" style="border-radius: 0.25rem; max-width: 120px; height: auto; object-fit: cover;" />
+        </div>
+      </div>
+
+      <span style="display: block; height: 4px; background-color: #003366;"></span>
+      <br>
+
+      <!-- To & Bill Info -->
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+        <!-- TO Info -->
+        <div style="flex: 1; min-width: 250px;">
+          <h5 style="color: #0047cc; font-weight: bold; margin-bottom: 0.5rem;">TO</h5>
+          <p style="margin-bottom: 0.25rem;">Customer Name: <strong>{{ customerName }}</strong></p>
+          <p style="margin-bottom: 0.25rem;">Email: {{ customerEmail }}</p>
+          <p style="margin-bottom: 0.25rem;">Address: {{ customerBilling }}</p>
+        </div>
+        <!-- Bill Info -->
+        <div style="flex: 1; min-width: 250px;">
+          <h5 style="color: #0047cc; font-weight: bold; margin-bottom: 0.5rem;">Bill</h5>
+          <p style="margin-bottom: 0.25rem;">Bill No: <strong>{{ currentDate }}</strong></p>
+          <p style="margin-bottom: 0;">Date: <strong>{{ BillDate }}</strong></p>
+        </div>
+      </div>
+
+      <span style="display: block; height: 4px; background-color: #003366;"></span>
+      <br>
+
+      <!-- Card Summary (Grid on Desktop, Stacked on Mobile) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; margin-bottom: 1rem;">
+        <div style="border: 1px solid #dee2e6; padding: 0.5rem; border-radius: 0.25rem; background-color: #ffcccc; text-align: center;">
+          Bill No<br><strong>{{ currentDate }}</strong>
+        </div>
+        <div style="border: 1px solid #dee2e6; padding: 0.5rem; border-radius: 0.25rem; background-color: #add8e6; text-align: center;">
+          Date<br><strong>{{ BillDate }}</strong>
+        </div>
+        <div style="border: 1px solid #dee2e6; padding: 0.5rem; border-radius: 0.25rem; background-color: #ffe5b4; text-align: center;">
+          Total Amount<br><strong><i class="fa fa-inr"></i>{{ totalAmount }}</strong>
+        </div>
+      </div>
+
+      <span style="display: block; height: 4px; background-color: #003366;"></span>
+      <br>
+
+      <!-- Items Table (Scrollable on Mobile) -->
+      <p style="font-weight: bold;"><i class="fa fa-list-ul"></i> Items</p>
+      <div style="overflow-x: auto;">
+        <table class="table table-bordered text-center" style="margin-bottom: 1rem;">
+        <thead class="table-bordered">
+          <tr>
+            <th style="padding: 0.75rem;">Item Code</th>
+            <th style="padding: 0.75rem;">Description</th>
+            <th style="padding: 0.75rem;">Rate</th>
+            <th style="padding: 0.75rem;">UOM</th>
+            <th style="padding: 0.75rem;">Discount</th>
+            <th style="padding: 0.75rem;">Quantity</th>
+            <th style="padding: 0.75rem;">Amount( {{ currency }} )</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Dynamic Rows -->
+          {{ itemsTable }}
+
+          <!-- Total Row -->
+          <tr class="table fw-bold">
+            <td colspan="5" style="border: none;"></td>
+            <td style="text-align: right;">{{ totalQuantity }}</td>
+            <td style="text-align: right;">{{ totalAmount }}</td>   
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <span style="display: block; height: 4px; background-color: #003366;"></span>
+      <br>
+
+      <!-- Terms & Total Summary (Flex on Desktop, Stacked on Mobile) -->
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+        <!-- Terms -->
+        <div style="flex: 1; min-width: 250px;">
+          <p style="font-weight: bold; color: #0047cc; margin-bottom: 0.5rem;">
+            <i class="fa fa-check-circle" style="color: #000;"></i> Terms
+          </p>
+          <ul style="margin: 0; padding-left: 1rem;">
+            <!-- {{ term.name }} -->
+          </ul>
+        </div>
+        <!-- Totals -->
+        <div style="flex: 1; min-width: 250px;">
+          <table style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
+            <tr>
+              <td style="padding: 0.5rem; border: 1px solid #000;"><strong>Total Quantity:</strong></td>
+              <td style="padding: 0.5rem; border: 1px solid #000; text-align: right;"><i class="fa fa-inr"></i>{{ totalQuantity }}</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.5rem; border: 1px solid #000;"><strong>Total Amount:</strong></td>
+              <td style="padding: 0.5rem; border: 1px solid #000; text-align: right;"><i class="fa fa-inr"></i>{{ totalAmount }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

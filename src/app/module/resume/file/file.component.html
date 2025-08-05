@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <div class="container-fluid vh-100 d-flex p-0">
+    <div class="col-md-6 p-4 bg-light overflow-auto">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 0" (click)="activetab = 0">Contact</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 1" *ngIf="experience" (click)="opentab()">Experience</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 2" *ngIf="education"(click)="openedu()">Education</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 3" *ngIf="skill"(click)="openskill()">Skills</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 4" *ngIf="about"(click)="openabout()">About</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" [class.active]="activetab === 5" *ngIf="finish"(click)="openfinish()">Finish IT</a>
+        </li>
+    
+  
+      </ul>
+
+      <div class="tab-content pt-4">
+        <div class="tab-pane" [class.show]="activetab === 0" [class.active]="activetab === 0" id="contact"
+          role="tabpanel">
+          <h2>Please Enter your contact info</h2><br>
+          <p>It allows employers to see how they can contact you.</p>
+
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="username" placeholder="First Name" name="first">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="lastname" placeholder="Last Name" name="last">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="city" placeholder="City" name="city">
+              </div>
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="postal" placeholder="Postal Code" name="postal">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="phonenumber" placeholder="Phone Number"
+                  name="phonenumber">
+              </div>
+              <div class="col-md-6">
+                <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email" name="email">
+              </div>
+
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="address" placeholder="Address" name="Address">
+              </div>
+            </div>
+
+            <div class="text-end">
+              <button type="button" class="btn btn-primary" (click)="opentab()">Next to Experience -></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" [class.show]="activetab === 1" [class.active]="activetab === 1" id="experience"
+          role="tabpanel">
+          <div class="card-header">
+            <h4>Please Enter your Experience
+              <i class="fa fa-plus" (click)="addExperience()" style="float: right;"></i>
+            </h4>
+          </div>
+
+          <form class="p-3" *ngFor="let exp of experiences; let i = index">
+            <div class="row mb-3">
+
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="exp.company" [name]="'company_' + i"
+                  placeholder="Company name">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="exp.position" [name]="'position_' + i"
+                  placeholder="Job Position">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="exp.joinyear" [name]="'joinyear_' + i"
+                  placeholder="Joining year">
+              </div>
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="exp.ending" [name]="'ending_' + i"
+                  placeholder="Ending Year">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="exp.companyaddress" [name]="'companyaddress_' + i"
+                  placeholder="Address">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="exp.companycity" [name]="'companycity_' + i"
+                  placeholder="City">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <input type="text" class="form-control" [(ngModel)]="exp.content" [name]="'content_' + i"
+                  placeholder="Place your Job roles and responsibilities">
+              </div>
+            </div>
+
+            <hr *ngIf="i < experiences.length - 1">
+          </form>
+
+          <div class="text-end p-3">
+            <button type="button" class="btn btn-primary" (click)="openedu()">Next to Education -></button>
+          </div>
+        </div>
+
+
+        <div class="tab-pane fade" [class.show]="activetab === 2" [class.active]="activetab === 2" id="education"
+          role="tabpanel">
+          <div class="card-header">
+            <h4>Please Enter your Education
+              <i class="fa fa-plus" (click)="addEducation()" style="float: right;"></i>
+            </h4>
+          </div>
+
+          <form class="p-3" *ngFor="let edu of educations; let i = index">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="edu.type" [name]="'type_' + i" placeholder="PG/UG">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="edu.degree" [name]="'degree_' + i"
+                  placeholder="Enter your Degree">
+              </div>
+
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="edu.joinyear" [name]="'ejoinyear_' + i"
+                  placeholder="Joining year">
+              </div>
+              <div class="col-md-6">
+                <input type="number" class="form-control" [(ngModel)]="edu.ending" [name]="'eending_' + i"
+                  placeholder="Ending Year">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="edu.college" [name]="'college_' + i"
+                  placeholder="College Name">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" [(ngModel)]="edu.university" [name]="'university_' + i"
+                  placeholder="University Name">
+              </div>
+            </div>
+
+
+            <hr *ngIf="i < educations.length - 1">
+          </form>
+
+          <div class="text-end p-3">
+            <button type="button" class="btn btn-primary" (click)="openskill()">Next to Skills -></button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" [class.show]="activetab === 3" [class.active]="activetab === 3" id="skills"
+          role="tabpanel">
+          <h2>Please Enter your skills</h2>
+          <div class="row mb-3">
+            <div class="col-12">
+              <p-chips [(ngModel)]="skillsArray" name="skillsInput" placeholder="Enter skills" separator=","
+                removable="true" class="w-100">
+              </p-chips>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-primary" (click)="openabout()">Next to About -></button>
+          </div>
+        </div>
+
+
+
+        <div class="tab-pane fade" [class.show]="activetab === 4" [class.active]="activetab === 4" id="about"
+          role="tabpanel">
+          <div class="row mb-12">
+            <div class="col-md-12">
+              <input type="text" class="form-control" [(ngModel)]="summary" placeholder="Summary" name="summary">
+            </div>
+          </div><br>
+          <div class="row mb-3">
+
+            <div class="col-md-6">
+              <input type="text" class="form-control" [(ngModel)]="language1" placeholder="Enter your Language"
+                name="language1">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" [(ngModel)]="language2" placeholder="Enter your Language"
+                name="language2">
+            </div>
+          </div><br>
+          <div class="text-end">
+            <button type="button" class="btn btn-primary" (click)="openfinish()">Next to finish -></button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" [class.show]="activetab === 5" [class.active]="activetab === 5" id="finish"
+          role="tabpanel">
+          <p>Finish IT tab selected</p>
+          <div class="tab-content pt-4">
+            <div class="row mt-4">
+              <div class="col-12 text-center">
+                <button type="button" class="btn btn-success btn-lg" (click) = "downloadresume()">
+                  <i class="fa fa-download me-2"></i> Download Resume
+                </button><br><br>Download your Resume Here<br><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="card" style="width:750px;">
+  <div class="card-header" style="height:40px">  <strong>Resume</strong>  <i class="nav-item dropdown ms-auto">
+  <i class="fa fa-exchange nav float-right" id="filterDropdown" 
+     data-bs-toggle="dropdown" style="cursor: pointer;"></i>
+  <div class="dropdown-menu dropdown-menu-start" [class.show]="showfilter">
+    <a class="dropdown-item" (click)="template1()">Template 1  <img src="assets/img/brand/resume1.png"style="width: 30px; height: 35px;"></a>
+    <a class="dropdown-item" (click)="template2()">Template 2  <img src="assets/img/brand/resume2.png"style="width: 30px; height: 35px;"></a>
+  </div>
+</i>
+</div>
+
+
+    
+      <div *ngIf="temp1" class="container bg-white shadow-sm mx-auto p-3">
+  <div id="resume-content" class="row w-100 shadow bg-white" style="max-width: 210mm;"> <!-- A4 paper width -->
+    
+    <!-- Sidebar Column -->
+    <div class="col-md-4 bg-dark text-white p-4">
+      <div class="text-center mb-3">
+        <h3 *ngIf="contactSaved" class="mt-2">{{ username }} {{ lastname }}</h3>
+      </div>
+
+      <div *ngIf="contactSaved">
+        <h5>Contact</h5>
+        <p class="mb-1"><strong>Phone:</strong> {{ phonenumber }}</p>
+        <p class="mb-1"><strong>Email:</strong> {{ email }}</p>
+        <p class="mb-1"><strong>Address:</strong> {{ address }} {{ city }} - {{ postal }}</p>
+      </div>
+      
+      <div *ngIf="education">
+        <h5 class="mt-4">Education</h5>
+        <div *ngFor="let edu of educations">
+          <p class="mb-1">{{ edu.joinyear }}-{{ edu.ending }} {{ edu.type }}<br>
+            <strong>{{ edu.degree }}</strong><br>
+            {{ edu.university }}/{{ edu.college }}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="skillsArray.length > 0">
+        <h5 class="mt-4">Skills</h5>
+        <ul class="pl-3">
+          <li *ngFor="let skill of skillsArray">{{skill}}</li>
+        </ul>
+      </div>
+
+      <div *ngIf="about">
+        <h5 class="mt-4">Language</h5>
+        <p class="mb-1">{{ language1 }}</p>
+        <p>{{ language2 }}</p>
+      </div>
+    </div>
+
+    <!-- Main Content Column -->
+    <div class="col-md-8 p-4">
+      <div *ngIf="about">
+        <h2 class="mb-3">Summary</h2>
+        <p class="text-justify">{{ summary }}</p>
+      </div>
+
+      <div *ngIf="experience">
+        <h4 class="border-bottom pb-2 mt-4">Experience</h4>
+        <div *ngFor="let exp of experiences" class="mb-4">
+          <h6>{{ exp.joinyear }} - {{ exp.ending }}</h6>
+          <p class="mb-0"><strong>{{ exp.company }} | {{ exp.companyaddress }} {{ exp.companycity }}</strong></p>
+          <p class="mb-2"><em>{{ exp.position }}</em></p>
+          <p class="text-justify">{{ exp.content }}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+       <div id="resume-content2" *ngIf="temp2" class="container bg-white shadow-sm mx-auto p-3" style="max-width:210mm;">
+        <!-- Header Section -->
+        <div class="text-center mb-2">
+            <h1 class="fs-3 fw-bold text-primary">{{ username }} {{ lastname }}</h1>
+            <!-- <p class="fs-5 text-secondary mb-1">J O B  T I T L E / P O S I T I O N</p> -->
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <span class="text-dark fs-6">{{ phonenumber }}</span>
+                <span class="text-primary fs-6">{{ email }}</span>
+                <span class="text-dark fs-6">{{ address }}., {{ city }} - {{ postal }}</span>
+               
+            </div>
+            <hr class="my-1">
+        </div>
+        
+        <!-- Profile Section -->
+        <div class="mb-3" *ngIf ="about">
+            <h2 class="fs-5 text-primary border-bottom pb-1">PROFILE</h2>
+            <p class="text-dark mb-0 fs-6">{{ summary }}</p>
+        </div>
+        
+        <!-- Skills Section - 3 Column Layout -->
+        <div class="mb-3">
+           <div *ngIf="skillsArray.length > 0">
+  <h2 class="fs-5 text-primary border-bottom pb-1">SKILLS</h2>
+  <ul class="pl-3 list-unstyled">
+    <li class="text-dark fs-6" *ngFor="let skill of skillsArray">• {{skill}}</li>
+  </ul>
+</div>
+        </div>
+        
+        <!-- Experience Section -->
+        <div class="mb-3" *ngIf="experience">
+            <h2 class="fs-5 text-primary border-bottom pb-1">EXPERIENCE</h2>
+            
+            <div class="mb-2"*ngFor="let exp of experiences">
+                <h3 class="fs-6 fw-bold text-dark mb-0">{{ exp.position }}</h3>
+                <p class="mb-0 text-dark fs-6">{{ exp.company }}| {{ exp.companyaddress }} {{ exp.companycity }}</p>
+                <p class="text-secondary fs-6 mb-1">{{ exp.joinyear }} - {{ exp.ending }}</p>
+                <ul class="text-dark ps-3 mb-2">
+                    {{ exp.content }}
+
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Education Section -->
+        <div *ngIf="education">
+            <h2 class="fs-5 text-primary border-bottom pb-1">EDUCATION</h2>
+            <div class="mb-2" *ngFor="let edu of educations">
+                <h3 class="fs-6 fw-bold text-dark mb-0">{{ edu.degree }}</h3>
+                
+                <p class="text-secondary fs-6">{{ edu.joinyear }} - {{ edu.ending }} {{ edu.type }}</p>
+            </div>
+            <div *ngFor="let edu of educations">
+                <h3 class="fs-6 fw-bold text-dark mb-0">{{ edu.university }}</h3>
+                <p class="mb-0 text-dark fs-6">{{ edu.college }}
+</p>
+            </div>
+        </div>
+        <div *ngIf="about">
+            <h2 class="fs-5 text-primary border-bottom pb-1">Language</h2>
+             <p>{{ language1 }} , {{ language2 }}</p>
+</div>
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</body>
+
+</html>

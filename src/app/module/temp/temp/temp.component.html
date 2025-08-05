@@ -1,0 +1,198 @@
+<div style="border: 1px solid #dee2e6; border-radius: 0.25rem; margin-bottom: 1rem;">
+  <div style="padding: 0.75rem 1.25rem; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6; display: flex; align-items: center;">
+    <i class="fa fa-align-justify" style="margin-right: 0.5rem;"></i>
+    <strong style="flex-grow: 1;">Standard Template</strong>
+    <i class="fa fa-edit" style="cursor: pointer; margin-left: auto;"></i>
+  </div> 
+
+  <div style="padding: 1.25rem; background-color: white;">
+    <form>
+      <!-- Row -->
+      <div class="row p-1" style="margin-bottom: 1rem;">
+  <!-- Bill Info -->
+  <div class="col-6" style="padding-right: 0.75rem; padding-left: 0.75rem;">
+    <h5 style="font-weight: bold; color: #0047cc; margin-bottom: 0.5rem;">{{ data.bill }}</h5>
+    <p style="margin-bottom: 0.25rem; font-weight: 600;">{{ data.company }}</p>
+    <p style="margin-bottom: 0.25rem;">{{ data.cmpemail }}, {{ data.cmpphone }}</p>
+    <p style="margin-bottom: 0.25rem;">
+      {{ data.cmpaddress }}, {{ data.cmpcity }}, {{ data.cmpdistrict }},
+      {{ data.cmpstate }} {{ data.cmppostal }}
+    </p>
+    <p style="margin-bottom: 0;"><strong>{{ data.cmpgst }}</strong></p>
+  </div>
+
+  <!-- Image -->
+  <div class="col-6" style="padding-right: 0.75rem; padding-left: 0.75rem;">
+    <div style="display: flex; justify-content: flex-end;">
+      <img src="{{ data.image }}" alt="staff photo" style="border-radius: 0.25rem; width: 120px; height: auto; object-fit: cover;" />
+    </div>
+  </div>
+</div>
+      <span style="display: block; height: 4px; background-color: #003366;"></span>
+<br>
+      <!-- To Info -->
+       
+      <div class="row" style="margin-bottom: 1rem;">
+  <!-- TO Info -->
+  <div class="col-6">
+    <h6 style="color: #0047cc; font-weight: bold;">{{ data.to }}</h6>
+    <p style="margin-bottom: 0.25rem;">{{ data.namehead }}: <strong>{{ data.name }}</strong></p>
+    <p style="margin-bottom: 0.25rem;">{{ data.emailhead }}: {{ data.email }}</p>
+    <p style="margin-bottom: 0.25rem;">{{ data.numberhead }}: {{ data.phone }}</p>
+    <p style="margin-bottom: 0.25rem;">
+      {{ data.addresshead }}: {{ data.address }}, {{ data.district }}, {{ data.city }},
+      {{ data.state }}, {{ data.postal }}
+    </p>
+    <p style="margin-bottom: 0;">{{ data.gsthead }}: {{ data.gstin }}</p>
+  </div>
+
+  <!-- Invoice Info -->
+  <div class="col-6">
+    <h6 style="color: #0047cc; font-weight: bold;">{{ data.bill }}</h6>
+    <p style="margin-bottom: 0.25rem;">{{ data.invoicehead }}: <strong>{{ data.billdate }}</strong></p>
+    <p style="margin-bottom: 0;">{{ data.duehead }}: <strong>{{ data.duedate }}</strong></p>
+  </div>
+</div>
+
+      <span style="display: block; height: 4px; background-color: #003366"></span>
+      <br>
+       <!-- Card Summary -->
+       <div style="padding-top: 0;">
+  <div
+    style="display: flex; flex-wrap: wrap; text-align: center; margin-left: -0.5rem; margin-right: -0.5rem; gap: 1rem;">
+    
+    <div *ngIf="data.gstno" style="flex: 1; padding-left: 0.5rem; padding-right: 0.5rem;">
+      <div style="border: 1px solid #dee2e6; padding: 0.5rem 0; border-radius: 0.25rem; background-color: #f8f9fa;">
+        {{ data.gsthead }}<br><strong>{{ data.gstno }}</strong>
+      </div>
+    </div>
+
+    <div *ngIf="data.billno" style="flex: 1; padding-left: 0.5rem; padding-right: 0.5rem;">
+      <div style="border: 1px solid #dee2e6; padding: 0.5rem 0; border-radius: 0.25rem; background-color: #ffcccc; color: #000;">
+        {{ data.billhead }}<br><strong>{{ data.billno }}</strong>
+      </div>
+    </div>
+
+    <div *ngIf="data.duedate" style="flex: 1; padding-left: 0.5rem; padding-right: 0.5rem;">
+      <div style="border: 1px solid #dee2e6; padding: 0.5rem 0; border-radius: 0.25rem; background-color: #add8e6; color: #000;">
+        {{ data.duehead }}<br><strong>{{ data.duedate }}</strong>
+      </div>
+    </div>
+
+    <div *ngIf="data.totalamtans" style="flex: 1; padding-left: 0.5rem; padding-right: 0.5rem;">
+      <div style="border: 1px solid #dee2e6; padding: 0.5rem 0; border-radius: 0.25rem; background-color: #ffe5b4; color: #000;">
+        {{ data.totamounthead }}<br><strong><i class="fa fa-inr"></i>{{ data.totalamtans }}</strong>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+      <span style="display: block; height: 4px; background-color: #003366"></span>
+     <br>
+
+     
+
+      <!-- Items Table -->
+      <p style="color: #0047cc; font-weight: bold;"><i class="fa fa-list-ul"></i> {{ data.itemhead }}</p>
+      <table class="table table-bordered text-center" style="margin-bottom: 1rem;">
+  <thead class="table-bordered">
+    <tr>
+      <th style="padding: 0.75rem;">{{ data.codehead }}</th>
+      <th style="padding: 0.75rem;">{{ data.deshead }}</th>
+      <th style="padding: 0.75rem;">{{ data.uomhead }}</th>
+      <th style="padding: 0.75rem;">{{ data.qtyhead }}</th>
+      <th style="padding: 0.75rem;">{{ data.ratehead }}</th>
+      <th style="padding: 0.75rem;">{{ data.dichead }}</th>
+      <th style="padding: 0.75rem;">{{ data.itemamthead }}</th>
+      <th style="padding: 0.75rem;">{{ data.totalamthead }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Sample Dynamic Rows -->
+    <tr *ngFor="let item of data.row">
+      <td>{{ item.code }}</td>
+      <td>{{ item.des }}</td>
+      <td>{{ item.uom }}</td>
+      <td>{{ item.qty }}</td>
+      <td style="text-align: right;"><i class="fa fa-inr"></i>{{ item.rate }}</td>
+      <td>{{ item.dic }}</td>
+      <td>{{ item.itemamt }}</td>
+      <td style="text-align: right; font-weight: bold;"><i class="fa fa-inr"></i>{{ item.totalamt }}</td>
+    </tr>
+    <!-- Total Row -->
+    <tr class="table fw-bold">
+      <td colspan="6" style="text-align: right;">{{ data.totamounthead }}</td>
+      <td colspan="2" style="text-align: right;"><i class="fa fa-inr"></i>{{ data.totalamtans }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<span style="display: block; height: 4px; background-color: #003366;"></span><br>
+ <!-- Terms -->
+      <div class="row" style="margin-bottom: 1rem;">
+  <!-- Terms Section -->
+  <div class="col-6">
+    <p style="font-weight: bold; color: #0047cc; margin-bottom: 0.25rem;">
+      <i class="fa fa-check-circle" style="color: #000;"></i> {{ data.terms }}
+    </p>
+    <ul style="margin-bottom: 0; padding-left: 1rem;">
+      <li>{{ data.condition1 }}</li>
+      <li>{{ data.condition2 }}</li>
+      <li>{{ data.condition3 }}</li>
+      <li>{{ data.condition4 }}</li>
+    </ul>
+  </div>
+
+  <!-- Totals Table -->
+  <div class="col-6 ">
+    <table class="col-6 ms-auto" style="border: 1px solid #dee2e6; border-collapse: collapse; width: 100%;">
+      <tr>
+        <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+          <strong>{{ data.totamounthead }} :</strong>
+        </td>
+        <td style="border: 1px solid #dee2e6; padding: 0.75rem; text-align: right;">
+          <i class="fa fa-inr"></i>{{ data.totalamtans }}
+        </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+          <strong>{{ data.totalgsthead }} :</strong>
+        </td>
+        <td style="border: 1px solid #dee2e6; padding: 0.75rem; text-align: right;">
+          <i class="fa fa-inr"></i>{{ data.totalgstans }}
+        </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+          <strong>{{ data.totalpayhead }} :</strong>
+        </td>
+        <td style="font-weight: bold; border: 1px solid #dee2e6; padding: 0.75rem; text-align: right;">
+          <i class="fa fa-inr"></i>{{ data.totalpayable }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+      <span style="display: block; height: 4px; background-color: #003366;"></span><br>
+      <!-- Bank Details -->
+      <div style="display: flex; flex-wrap: wrap; padding-right: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 33.33%; border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 1rem;">
+          <p style="color: #0047cc; font-weight: bold; margin-bottom: 0.5rem;">{{ data.bankdetailhead }}:</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.accnamehead }}: {{ data.accname }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.accnohead }}: {{ data.accno }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.bankhead }}: {{ data.bank }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.branchhead }}: {{ data.branch }}</p>
+          <p style="margin-bottom: 0;">{{ data.ifschead }}: {{ data.code }}</p>
+        </div>
+      </div>
+<span style="display: block; height: 3px; background-color: gray;"></span>
+
+      <!-- Footer -->
+      <div style="text-align: center; padding-top: 0.5rem;">
+        <small style="color: #6c757d;">{{ data.text }}</small>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+
+  <div class="bg-white mx-auto p-4 shadow" style=" max-width: 210mm; width: 100%; min-height: 100vh; overflow-wrap: break-word;">
+    <div class="container-fluid">
+      
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h6 class="fw-bold">{{ data.head }}</h6>
+        <h6 class="fw-bold">{{ data.sub }}</h6>
+        <h6 class="fw-bold">{{ data.sub1 }}</h6>
+      </div>
+
+      <!-- Details -->
+      <div class="mb-3">
+  <p class="mb-1">
+    <span class="me-5">1. {{ data.varduhead }}:<span class="ms-4"><u>{{ data.vardu }}</u></span></span>
+    <span class="me-5">{{ data.doornohead }}:<span class="ms-4"><u>{{ data.doorno }}</u></span></span>
+    <span class="me-5">{{ data.streethead }}:<span class="ms-4"><u>{{ data.street }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">2. {{ data.headofhead }}:<span class="ms-4"><u>{{ data.headof }}</u></span></span>
+    <span class="me-5">{{ data.agehead }}:<span class="ms-4"><u>{{ data.age }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">3. {{ data.businesshead }}:<span class="ms-4"><u>{{ data.business }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">4. {{ data.marriagehead }}:<span class="ms-4"><u>{{ data.marriage }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">5. {{ data.marriagenamehead }}:<span class="ms-4"><u>{{ data.marriagename }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">6. {{ data.assethead }}:<span class="ms-4"><u>{{ data.asset }}</u></span></span>
+  </p>
+  <p class="mb-1">
+    <span class="me-5">7. {{ data.househead }}:<span class="ms-4"><u>{{ data.house }}</u></span></span>
+  </p>
+</div>
+
+
+
+      <!-- Family Table -->
+      <h6 class="fw-bold mt-3">8. {{ data.familyhead }}</h6>
+      <div class="table-responsive">
+      <table class="table table-bordered table-sm text-center align-middle">
+  <thead>
+    <tr>
+      <th class="text-wrap">{{ data.snohead }}</th>
+      <th class="text-wrap">{{ data.namehead }}</th>
+      <th class="text-wrap">{{ data.tableagehead }}</th>
+      <th class="text-wrap">{{ data.genderhead }}</th>
+      <th class="text-wrap">{{ data.relationhead }}</th>
+      <th class="text-wrap">{{ data.learnhead }}</th>
+      <th class="text-wrap">{{ data.secondbusiness }}</th>
+      <th class="text-wrap">{{ data.timehead }}</th>
+      <th class="text-wrap">{{ data.tablebusinesshead }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data.row">
+                <td>{{ item.sno }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.age }}</td>
+                <td>{{ item.gender }}</td>
+                <td>{{ item.ration }}</td>
+                <td>{{ item.learn }}</td>
+                <td>{{ item.business }}</td>
+                <td>{{ item.time }}</td>
+                <td>{{ item.tablebusiness }}</td>
+              </tr>
+    
+  </tbody>
+</table></div>
+
+
+      <!-- Student Table -->
+      <h6 class="fw-bold mt-4">9. {{ data.studenthead }}</h6>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead class="text-center">
+            <tr>
+              <th>{{ data.studentnamehead }}</th>
+              <th>{{ data.studentagehead }}</th>
+              <th>{{ data.studentstdhead }}</th>
+              <th>{{ data.studentschoolheadgot }}</th>
+              <th>{{ data.studentschoolheadprivate }}</th>
+              <th colspan="4">{{ data.studenttalenthead }}</th>
+            </tr>
+            <tr>
+              <th colspan="5"></th>
+              <th>{{ data.percent35head }}</th>
+              <th>{{ data.percent50head }}</th>
+              <th>{{ data.percent75head }}</th>
+              <th>{{ data.percentabove75head }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.row2">
+    <td>{{ item.name }}</td>
+    <td>{{ item.age }}</td>
+    <td>{{ item.std }}</td>
+    <td>{{ item.govt }}</td>
+    <td>{{ item.private }}</td>
+    <td class="text-center">{{ item.precent35 }}</td>
+    <td class="text-center">{{ item.precent50 }}</td>
+    <td class="text-center">{{ item.precent75 }}</td>
+    <td class="text-center">{{ item.aboveprecent75 }}</td>
+  </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- More Info -->
+     <div class="mb-3 mt-3">
+  <p>
+    10. <span>{{ data.rationhead }}:</span>
+    <span class="ms-4"><u>{{ data.relation }}</u></span>
+  </p>
+  <p>
+    11. <span>{{ data.governmentschemehead }}:</span>
+    <span class="ms-4"><u>{{ data.govtscheme }}</u></span>
+  </p>
+  <p>
+    12. <span>{{ data.familyscheme }}:</span>
+    <span class="ms-4"><u>{{ data.familysch }}</u></span>
+  </p>
+  <p>
+    13. <span>{{ data.studentdetail }}:</span>
+    <span class="ms-4"><u>{{ data.studetail }}</u></span>
+  </p>
+  <p>
+    14. <span>{{ data.businessend }}:</span>
+    <span class="ms-4"><u>{{ data.businesses }}</u></span>
+  </p>
+  <p>
+    15. <span>{{ data.detailhead }}:</span>
+    <span class="ms-4"><u>{{ data.detail }}</u></span>
+  </p>
+</div>
+<br>
+
+
+      <!-- Footer Signatures -->
+      <div class="row mt-4">
+        <div class="col text-start">
+          <p>{{ data.datehead }} : {{ data.date }}</p>
+          <p>{{ data.signhead }}</p>
+        </div>
+        <div class="col text-end">
+          <p>&nbsp;</p>
+          <p>{{ data.signhead2 }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>

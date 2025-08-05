@@ -1,0 +1,94 @@
+    <div class="card-body">
+       
+<div style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; line-height: 1.4; color: #333333;">
+    <div class="border"style="width: 100%; max-width: 600px; margin: 0 auto;">
+        <!-- Header-->
+        <div style="background-color: rgb(0, 149, 0); padding: 20px; text-align: center; border-bottom: 1px solid #e5e5e5;">
+            <img src="https://dashboard.vedna.in/assets/logo/vedna.jpg" alt="Company Logo" style="max-width: 200px; height: auto;"><br><br>
+            <h1>Order Confirmation</h1>
+            <p>Thank you for your purchase!</p>
+        </div>        
+        <!-- Main content -->
+        <div style="padding: 20px;background-color: whitesmoke;">
+            <h4 class="fw-bold">Dear {{ userName }},</h4>
+            
+            <p>We're excited to let you know that we've received your order {{ orderNo }} and it's being processed. Here's what you ordered:</p>
+            
+            <div style="background-color: #e7e5e5; border-radius: 4px; padding: 15px; margin-bottom: 20px;">
+                <p><strong>Order Number:</strong> {{ orderNo }}</p>
+                <p><strong>Order Date:</strong> {{ orderDate }}</p>
+                <p><strong>Estimated Delivery:</strong> {{ delivery }}</p>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                    <tr>
+                        <th style="text-align: left; padding: 10px; background-color: #e7e5e5; border-bottom: 1px solid #ddd;">Item</th>
+                        <th style="text-align: left; padding: 10px; background-color: #e7e5e5; border-bottom: 1px solid #ddd;">Quantity</th>
+                        <th style="text-align: left; padding: 10px; background-color: #e7e5e5; border-bottom: 1px solid #ddd;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ product.name }}</td>
+    <td style="padding: 10px; border-bottom: 1px solid #eee;">{{ product.quantity }}</td>
+    <td style="padding: 10px; border-bottom: 1px solid #eee;"><i class="fa fa-inr"></i> {{ product.price }}</td>
+  </tr>
+                    
+                    <tr style="font-weight: bold;">
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;" colspan="2">Subtotal</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;"><i class="fa fa-inr"></i> {{ subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;" colspan="2">Shipping</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;"><i class="fa fa-inr"></i> {{ shipping }}</td>
+                    </tr>
+                    <tr style="font-weight: bold;">
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;" colspan="2">Total</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #eee;"><i class="fa fa-inr"></i> {{ totalAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Shipping Information</h3>
+            <p>
+                {{ userName }}<br>
+                {{ shippingStreet }}<br>
+                {{ shippingCity }}, {{ shippingState }} - {{ shippingZip }}<br>
+                {{ shippingCountry }}
+            </p>
+            
+            <h3>Billing Information</h3>
+            <p>
+               Payment Method :<strong> {{ paymentMethod }}</strong><br>
+                {{ billingName }}<br>
+                {{ billingStreet }}<br>
+                {{ billingCity }}, {{ billingState }} - {{ billingZip }}<br>
+                {{ billingCountry }}
+            </p>
+            
+            <p>You can track your order status at any time by clicking the button below:</p>
+            <a href="[Tracking Link]" style="display: inline-block; padding: 10px 20px; background-color: rgb(0, 149, 0); color: white; text-decoration: none; border-radius: 4px; margin: 10px 0;">Track Your Order</a>
+            
+            <p>If you have any questions about your order, please reply to this email or contact our customer service team at <strong>{{ companyEmail }}</strong> or {{ companyNumber}}.</p>
+            
+            <p>Thank you for shopping with us!</p>
+            <p>Best regards,<br>The <strong>{{ billingName }}</strong> Team</p>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #333333; padding: 20px; text-align: center; font-size: 12px; color: whitesmoke; border-top: 1px solid #e5e5e5;">
+            <p>&copy; 2025 {{ billingName }}. All rights reserved.</p>
+            <p>
+                {{ billingStreet }}<br>
+                {{ billingCity}}, {{ billingState }} {{ billingZip }}<br>
+                {{ billingCountry }}<br>
+            </p>
+            <p>
+                <a href="[Unsubscribe Link]" style="color: whitesmoke;">Unsubscribe</a> | 
+                <a href="[Privacy Policy Link]" style="color: whitesmoke;">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+</div>
+    </div>

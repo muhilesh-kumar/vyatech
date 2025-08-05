@@ -1,0 +1,43 @@
+
+<body *ngIf ="first" class="d-flex justify-content-center align-items-center vh-100 gap-4 bg-white">
+  <button class="btn btn-primary fs-4 badge bg-primary text-wrap" (click)="upload()">Import existing resume -></button>
+  <button class="btn btn-danger fs-4 badge bg-danger text-wrap" (click)="navigate()" >Create My CV With AI -></button>
+</body>
+
+<div *ngIf="uploadresume" class="d-flex flex-column justify-content-center align-items-center vh-100 bg-white p-4">
+  <div class="text-center mb-5">
+    <h1 class="mb-3 fw-bold">Upload your resume</h1>
+   
+  </div>
+
+  <div  *ngIf="uploaded" class="border border-2 border-dashed rounded-3 p-5 text-center mb-4 w-50 mx-auto">
+    <label for="resumeUpload" class="d-flex flex-column align-items-center" style="cursor: pointer;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" alt="Upload" width="80" class="mb-4 opacity-75">
+      <div class="mb-3 fs-5">Drag & drop your resume here to browser file</div>
+      <div class="text-muted mb-4">or</div>
+      <div class="btn btn-lg btn-outline-primary px-4 py-2">Select File</div>
+      <input type="file" id="resumeUpload" class="visually-hidden"(change)="onFileSelected($event)" accept=".pdf">
+    </label>
+  </div>
+ 
+  <div class="d-flex gap-3 mt-3">
+    <h2 class="text-muted fs-4">Want to start from scratch?</h2>
+    <button type="button" class="btn btn-primary px-4 py-2"(click)="create()">Next</button>
+  </div>
+</div>
+
+<!-- selectedfile page -->
+ <div *ngIf="selectedFile" class="d-flex flex-column justify-content-center align-items-center vh-100 bg-white p-4">
+  <div class="text-center mb-5"style="width: 1000px;">
+    <h1 class="mb-3 fw-bold">Resume Uploaded Successfully!!!</h1>
+    <div class="border border-2 border-dashed rounded-3 p-5 text-center mb-4 w-50 mx-auto">
+    <label for="resumeUpload" class="d-flex flex-column align-items-center" style="cursor: pointer;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" alt="Upload" width="80" class="mb-4 opacity-75">
+      <div class="fs-5">{{ selectedFile.name }}</div>
+    <div class="text-muted">Uploaded on {{ uploadDate }}</div><br>
+      <div class="btn btn-lg btn-outline-primary px-4 py-2"(click)="create()">Next</div>
+      
+    </label>
+  </div>
+  </div>
+  </div>

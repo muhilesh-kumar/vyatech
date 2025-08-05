@@ -28,13 +28,19 @@ const APP_CONTAINERS = [DefaultLayoutComponent];
 import { AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 
 // Import routing module
-import { AppRoutingModule } from './app.routing';
+
 
 // Import 3rd party components
 import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ToastrModule } from 'ngx-toastr';
+import { TabViewModule } from 'primeng/tabview';
+import { AppRoutingModule } from './app.routing';
+
+
+
 /*
 import { ReactiveFormsModule } from '@angular/forms';
 import { GridModule } from './module/grid/grid.module';
@@ -61,9 +67,14 @@ import { OrderModule } from './module/order/order.module';
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
+    TabViewModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
+    ChartsModule,ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
 /*
     ReactiveFormsModule,
     GridModule,
@@ -83,7 +94,7 @@ import { OrderModule } from './module/order/order.module';
     HttpClientModule,
     ModalModule.forRoot()
   ],
-  declarations: [AppComponent, ...APP_CONTAINERS, ],
+  declarations: [AppComponent, ...APP_CONTAINERS],
   providers: [
     {
       provide: LocationStrategy,

@@ -1,0 +1,397 @@
+<div class="card">
+  <div class="card-header"><i class="fa fa-align-justify"></i> Standard Template</div>
+<div class="card-body" id="screen" #screen>
+  <!-- Alert :: start -->
+  <!-- <alert *ngIf="alertMsg === true" type="success" dismissOnTimeout="3000" (onClosed)="alertMsg = undefined">
+              Saved.
+            </alert> -->
+  <!-- Alert :: End -->
+  <div class="scroll-mobile">
+    <div class="book">
+      <div class="page">
+        <div class="subpage">
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card-header01">
+                  <div class="row align-items-center">
+
+                   
+                    <div class="col-md-4 text-start">
+                      <h2 class="fw-bold mb-2">{{ data.name }}</h2>
+                      <div class="company-info">
+                        <p class="mb-1"><strong>{{ data.companyName }}</strong></p>
+                        <p class="mb-1">{{ data.email }} / {{ data.contactNumber }}</p>
+                        <p class="mb-1">{{ data.address }}</p>
+                        <p class="mb-1"><strong>{{ data.gstNumber }}</strong></p>
+                      </div>
+                    </div>
+
+                
+                    <div class="col-md-4 d-flex justify-content-center">
+                      <div class="bg-white p-3 rounded border" style="min-width: 300px;">
+                        <div class="row g-2 text-center">
+                          <div class="col-4">
+                            <small class="text-muted">Joined</small>
+                            <h5 class="text-info mb-0">
+                              {{ data.workingDuration }} ago
+                            </h5>
+
+                          </div>
+                          <div class="col-4">
+                            <div>
+                              <h5 class="text-secondary mb-0">-</h5>
+                              <small class="text-muted">Intern Days</small>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div>
+                              <h5 class="text-dark mb-0">-</h5>
+                              <small class="text-muted">Staff Days</small>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    
+                    <div class="col-md-4 text-end">
+                      <img [src]="data.image" alt="staff photo" *ngIf="data.image" class="rounded" 
+                        style="width: 120px; height: auto; object-fit: cover;" />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <hr class="red-line">
+
+              <div class="row">
+                <div class="col-12">
+                  <h4>Summary</h4>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                  <div class="bg-white p-3 rounded border" style="min-width: 300px;">
+                    <div class="row g-2 text-center">
+
+                      
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-success mb-0">{{ data.presentDays }}</h5>
+                          <small class="text-muted">Present Days</small>
+                        </div>
+                      </div>
+
+                      
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-danger mb-0">{{ data.absentDays }}</h5>
+                          <small class="text-muted">Absent Days</small>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-warning mb-0">{{ data.leaveDays }}</h5>
+                          <small class="text-muted">Leave Days</small>
+                        </div>
+                      </div>
+
+                      
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-info mb-0">
+                            {{ data.permissionHours }}</h5>
+                          <small class="text-muted">Permission Hours</small>
+                        </div>
+                      </div>
+
+                      
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-primary mb-0">
+                            {{ data.wfhHours }}
+                            min
+                          </h5>
+                          <small class="text-muted">WFH Hours</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-warning mb-0">
+                            {{ data.wfhDateCountLength || 0 }}
+                          </h5>
+                          <small class="text-muted">WFH Dates</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-primary mb-0">
+                            {{ data.wfhTotalJobWorkIds || 0 }}
+                          </h5>
+                          <small class="text-muted">Job Work IDs</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-4 d-flex justify-content-center">
+                  <div class="bg-white p-3 rounded border" style="min-width: 300px;">
+                    <div class="row g-2 text-center">
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-info mb-0">{{ data.managementSummary?.totalAssigned || 0 }}</h5>
+                          <small class="text-muted">Assigned Jobs</small>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div>
+                          <h5 class="text-success mb-0">{{ data.managementSummary?.totalCompleted || 0 }}</h5>
+                          <small class="text-muted">Completed</small>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-danger mb-0">{{ data.managementSummary?.totalRework || 0 }}</h5>
+                          <small class="text-muted">Rework</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-warning mb-0">{{ data.managementSummary?.totalInProgress || 0 }}</h5>
+                          <small class="text-muted">In Progress</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-primary mb-0">{{ data.jobWork.total }}</h5>
+                          <small class="text-muted">Total Jobs</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 d-flex justify-content-center">
+                  <div class="bg-white p-3 rounded border" style="min-width: 300px;">
+                    <div class="row g-2 text-center">
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-primary mb-0">{{ data.managementSummary?.totalEstimatedTime || 0 }} min</h5>
+                          <small class="text-muted">Estimated Time</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-success mb-0">{{ data.managementSummary?.totalTimeTaken || 0 }} min</h5>
+                          <small class="text-muted">Time Taken</small>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-info mb-0">{{ data.managementSummary?.efficiency || 'N/A' }}</h5>
+                          <small class="text-muted">Efficiency</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-warning mb-0">{{ data.managementSummary?.overallQuality || 'N/A' }}</h5>
+                          <small class="text-muted">Overall Quality</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-success mb-0">{{ data.jobWork.formattedTime }}</h5>
+                          <small class="text-muted">Actual Time</small>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div>
+                          <h5 class="text-warning mb-0">{{ data.jobWork.formattedTakenTime }}</h5>
+                          <small class="text-muted">Spent Time</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <hr class="red-line">
+              <div class="row mb-3">
+              
+                <div class="col-6">
+                  <h5
+                    class="text-center mb-3 fw-bold text-primary d-flex justify-content-center align-items-center gap-2">
+                    <i class="fa fa-star text-warning"></i>
+                    <span>Ratings</span>
+                    <i class="fa fa-star text-warning"></i>
+                  </h5>
+
+                  <div class="row g-2">
+                    <div *ngFor="let rating of data.managementSummary.starRatings" class="col-12 col-sm-6">
+                      <div
+                        class="border rounded-3 p-3 h-100 d-flex flex-column justify-content-center align-items-center bg-light">
+                        <div class="fw-semibold mb-1 text-truncate w-100 text-center">
+                          {{ rating.role }}
+                        </div>
+                        <div class="small text-muted mb-2 text-truncate w-100 text-center">
+                          {{ rating.email }}
+                        </div>
+                        <div class="fs-4 text-warning">
+                          <ng-container *ngFor="let star of [].constructor(5); let i = index">
+                            <i class="fa" [ngClass]="
+                                      i < Math.floor(rating.rating)
+                                        ? 'fa-star'
+                                        : i < rating.rating
+                                        ? 'fa-star-half-o'
+                                        : 'fa-star-o'
+                                    "></i>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <h5
+                    class="text-center mb-3 fw-bold text-danger d-flex justify-content-center align-items-center gap-2">
+                    <i class="fa fa-exclamation-circle text-danger"></i>
+                    <span>Performance Summary</span>
+                    <i class="fa fa-check-circle text-success"></i>
+                  </h5>
+
+                  <div class="row g-2">
+                    
+                    <div class="col-12 col-sm-6">
+                      <div class="border rounded-3 p-3 bg-light h-100">
+                        <div class="fw-semibold text-center text-danger mb-2">Rework Stats</div>
+                        <div class="text-center">
+                          <h5 class="text-danger mb-1">-</h5>
+                          <small class="text-muted">Jobs Reworked</small>
+                        </div>
+                        <div class="text-center mt-2">
+                          <h6 class="text-warning mb-0">-</h6>
+                          <small class="text-muted">Rework Time</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  
+                    <div class="col-12 col-sm-6">
+                      <div class="border rounded-3 p-3 bg-light h-100">
+                        <div class="fw-semibold text-center text-success mb-2">Positive Metrics</div>
+                        <div class="text-center">
+                          <h5 class="text-primary mb-1">{{ data.managementSummary?.efficiency || 'N/A' }}</h5>
+                          <small class="text-muted">Efficiency</small>
+                        </div>
+                        <div class="text-center mt-2">
+                          <h6 class="text-success mb-1">{{ data.managementSummary?.overallQuality || 'N/A' }}</h6>
+                          <small class="text-muted">Overall Quality</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr class="red-line">
+              <div class="row g-1 mt-2">
+                
+                <div class="col-4">
+                  <div class="card border-0">
+                    <div class="card-header fw-semibold bg-light border-bottom">
+                      Performance Meter
+                    </div>
+                    <div class="card-body py-2 px-3">
+                      <div *ngFor="let meter of data.qualityMeterData" class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                          <small class="text-muted">{{ meter.label }}</small>
+                          <small class="fw-semibold">{{ meter.value }}%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                          <div class="progress-bar" role="progressbar" [style.width.%]="meter.value"
+                            [ngStyle]="{ 'background-color': meter.color1 }" [attr.aria-valuenow]="meter.value"
+                            aria-valuemin="0" aria-valuemax="100">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+                <div class="col-4">
+                  <div class="card border-0">
+                    <div class="card-header fw-semibold bg-light border-bottom">
+                      Review Metrics
+                    </div>
+                    <div class="card-body py-2 px-3">
+                      <table class="table table-bordered table-sm mb-2 text-center align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th class="text-start">Metric</th>
+                            <th>P</th>
+                            <th>1</th>
+                            <th>2</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let metric of data.reviewMetrics; let i=index">
+                            <td class="text-start small">
+                              <i class="fa fa-angle-double-right me-1 text-muted"></i>{{ metric.name }}
+                            </td>
+                            <td><input type="number" class="form-control form-control-sm" [(ngModel)]="metric.rating"
+                                name="rating_{{i}}" (ngModelChange)="calculateAverage()" /></td>
+                            <td><input type="number" class="form-control form-control-sm" [(ngModel)]="metric.person1"
+                                name="person1_{{i}}" (ngModelChange)="calculateAverage()" /></td>
+                            <td><input type="number" class="form-control form-control-sm" [(ngModel)]="metric.person2"
+                                name="person2_{{i}}" (ngModelChange)="calculateAverage()" /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="d-flex justify-content-end align-items-center gap-2">
+                        <label class="fw-semibold mb-0">Average:</label>
+                        <input type="number" class="form-control form-control-sm" [(ngModel)]="data.averageRate" name="averageRate"
+                          readonly style="width: 70px;" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="col-4">
+                  <div class="card border-0">
+                    <div class="card-header fw-semibold bg-light border-bottom">
+                      Overall Review
+                    </div>
+                    <div class="card-body py-2 px-3">
+                      <textarea class="form-control" rows="8" [(ngModel)]="data.overallReview" name="overallReview"
+                        placeholder="Write review..."></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="text-center">
+              <small class="text-muted">This is a computer-generated document. No signature is required.</small>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

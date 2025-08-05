@@ -1,0 +1,24 @@
+<body class="d-flex justify-content-center align-items-center vh-100 bg-white">
+  <div class="text-center">
+    <div class="fs-1 text-wrap mb-4">Select your template</div><br>
+    <div *ngIf="text" class="d-flex justify-content-center gap-5">
+  <img src="assets/img/brand/resume1.png" alt="Resume 1"
+       style="height:300px; width:250px; cursor:pointer;"
+       (click)="updatedtemplate('template1')">
+
+  <img src="assets/img/brand/resume2.png" alt="Resume 2"
+       style="height:300px; width:250px; cursor:pointer;"
+       (click)="updatedtemplate('template2')">
+</div>
+
+<div *ngIf="text1" class="d-flex justify-content-center gap-5">
+  <img src="assets/img/brand/resume1.png" alt="Resume 1"
+       style="height:300px; width:250px; cursor:pointer;"
+       (click)="selectTemplate('template1')">
+
+  <img src="assets/img/brand/resume2.png" alt="Resume 2"
+       style="height:300px; width:250px; cursor:pointer;"
+       (click)="selectTemplate('template2')">
+</div>
+  </div>
+</body>

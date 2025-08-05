@@ -1,0 +1,7 @@
+name,dob,phonenumber,email,married,gender,status,addressType,addressLine,district,city,state
+John,1990-01-15,1234567890,john@example.com,married,male,yes,Current,123 Main St,Central,New York,NY
+Ravi,2004-08-21,7013256748,ravi@gmail.com,Single,Male,Yes,Current,124 Main St,Central,New York,NY
+Mahesh,1999-01-28,9054372819,mahesh@gmail.com,Married,Male,Yes,Current,125 Main St,Central,New York,NY
+Ramesh,2000-09-22,7898062190,ramesh@gmail.com,Single,Male,No,Current,126 Main St,Central,New York,NY
+Maari,2000-09-22,7898062190,ramesh@gmail.com,Single,Male,No,Current,127 Main St,Central,New York,NY
+John,1990-01-15,1234567890,john@example.com,married,male,yes,Permanent,128 Main St,Chennai,Chennai,Chennai

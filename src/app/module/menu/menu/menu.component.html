@@ -1,0 +1,90 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Select Application
+                </div>
+                <div class="form-group m-2">
+                    <label>Select Application</label>
+                    <select class="form-control form-control-sm"
+                        style="width: 120px; font-size: 12px; padding: 2px 6px;" [(ngModel)]="selectedOption"
+                        (change)="onSelectChange()">
+                        <option value="" disabled>Select...</option>
+                        <option *ngFor="let opt of options" [value]="opt">{{ opt }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dynamic Table -->
+<div class="animated fadeIn" *ngIf="selectedOption">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> {{ selectedOption }} Table
+                    <i class="fa fa-plus float-right" style="cursor: pointer;" (click)="addRow(selectedOption)"></i>
+                </div>
+                <div class="form-group m-2">
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tableData[selectedOption]; let i = index">
+                                <td>
+                                    <input [(ngModel)]="row.key" class="form-control form-control-sm"
+                                        placeholder="Enter key">
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="row.type" (change)="onKeyTypeChange(selectedOption, i)"
+                                        class="form-control form-control-sm">
+                                        <option value="">Select type</option>
+                                        <option value="string">String</option>
+                                        <option value="array">Array</option>
+                                        <option value="boolean">Boolean</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <!-- string -->
+                                    <input *ngIf="row.type === 'string'" [(ngModel)]="row.value"
+                                        class="form-control form-control-sm" placeholder="Enter string value">
+
+                                    <!-- array -->
+                                    <div *ngIf="row.type === 'array'">
+                                        <input [(ngModel)]="row.commaValue" (ngModelChange)="onCommaValueChange(row)"
+                                            class="form-control form-control-sm"
+                                            placeholder="Enter values separated by commas (e.g. val1, val2, val3)">
+                                    </div>
+
+
+                                    <!-- boolean -->
+                                    <select *ngIf="row.type === 'boolean'" [(ngModel)]="row.value"
+                                        class="form-control form-control-sm">
+                                        <option [ngValue]="true">true</option>
+                                        <option [ngValue]="false">false</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <i class="fa fa-trash" style="cursor: pointer; color: red;" (click)="deletecommand(i)"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-sm btn-success float-right" (click)="submitTable(selectedOption)">Submit
+                        {{ selectedOption }}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

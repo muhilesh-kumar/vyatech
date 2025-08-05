@@ -1,0 +1,101 @@
+
+    <div style="max-width: 210mm; width: 100%; min-height: 100vh; margin: 40px auto; background-color: #ffffff; box-shadow: 0px 0px 8px rgba(0,0,0,0.1);">
+
+      
+      <div style="display: flex;">
+        
+        <div style="background-color: green; color: #fff; padding: 20px 60px; font-weight: bold;"><h2> {{ data.bill }} </h2></div>
+        
+        <div style="flex-grow: 1; background-color: #2e3d49; color: #fff; padding: 15px 20px; text-align: right;">
+            <img src="{{ data.image }}" alt="staff photo" style="border-radius: 0.25rem; width: 120px; height: auto; object-fit: cover;" />
+        </div>
+      </div>
+      <div style="padding: 30px;">
+        <table width="100%">
+          <tr>
+            <td style="vertical-align: top; font-size: 14px;">
+              <strong style="color: navy;"><h5>{{ data.to }} :</h5></strong><br>
+              <p class="mb-1">{{ data.name }}</p>
+        <p class="mb-1">{{ data.address }}, {{ data.district }}, {{ data.city }}</p>
+        <p class="mb-1">{{ data.state }}, {{ data.postal }}</p>
+        <p class="mb-1">{{ data.phone }}</p>
+        <p class="mb-1">{{ data.email }}</p>
+            </td>
+            <td style="text-align: right; font-size: 14px;">
+    <p style="margin-bottom: 0.25rem;"><strong style="color: navy;"><h4>{{ data.company }}</h4></strong></p>
+    <p style="margin-bottom: 0.25rem;">{{ data.cmpemail }}, {{ data.cmpphone }}</p>
+    <p style="margin-bottom: 0.25rem;">
+      {{ data.cmpaddress }}, {{ data.cmpcity }}, {{ data.cmpdistrict }}</p>
+      <p>{{ data.cmpstate }} {{ data.cmppostal }}
+    </p>
+    <div><hr><br>
+              <strong >{{ data.gsthead }} :</strong> {{ data.gstno }}<br>
+              <strong >{{ data.billhead }} :</strong> {{ data.billno }}<br>
+              <strong >{{ data.duehead }} :</strong> {{ data.duedate }}<br>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="table-responsive">
+        <table width="100%" cellpadding="8" cellspacing="0" style="margin-top: 30px; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: green; color: #fff; text-align: left;">
+              <th style="padding: 0.75rem;">{{ data.codehead }}</th>
+      <th>{{ data.deshead }}</th>
+      <th>{{ data.uomhead }}</th>
+      <th>{{ data.qtyhead }}</th>
+      <th style="padding: 0.75rem;">{{ data.ratehead }}</th>
+      <th>{{ data.dichead }}</th>
+      <th>{{ data.itemamthead }}</th>
+      <th>{{ data.totalamthead }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.row">
+      <td>{{ item.code }}</td>
+      <td>{{ item.des }}</td>
+      <td>{{ item.uom }}</td>
+      <td>{{ item.qty }}</td>
+      <td style="text-align: right;"><i class="fa fa-inr"></i>{{ item.rate }}</td>
+      <td>{{ item.dic }}</td>
+      <td>{{ item.itemamt }}</td>
+      <td style="text-align: right; font-weight: bold;"><i class="fa fa-inr"></i>{{ item.totalamt }}</td>
+    </tr>
+    <tr class="table fw-bold">
+      <td colspan="6" style="text-align: right;">{{ data.totamounthead }}</td>
+      <td colspan="2" style="text-align: right;"><i class="fa fa-inr"></i>{{ data.totalamtans }}</td>
+    </tr>
+           
+          </tbody>
+        </table>
+        </div>
+
+<table width="100%" style="margin-top: 30px;">
+          <tr>
+            <td style="vertical-align: top; width: 70%;"><br><br>
+              <p style="margin: 0; font-weight: bold;color: navy;">{{ data.bankdetailhead }} :</p>
+             <p style="margin-bottom: 0.25rem;">{{ data.accnamehead }}: {{ data.accname }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.accnohead }}: {{ data.accno }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.bankhead }}: {{ data.bank }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.branchhead }}: {{ data.branch }}</p>
+          <p >{{ data.ifschead }}: {{ data.code }}</p><hr>
+
+              <p style="margin: 0; font-weight: bold; margin-bottom: 0.35rem; color: navy;">{{ data.terms }}</p>
+             <p style="margin-bottom: 0.25rem;"> {{ data.condition1 }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.condition2 }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.condition3 }}</p>
+          <p style="margin-bottom: 0.25rem;">{{ data.condition4 }}</p>
+            </td>
+            <td style="vertical-align: top; text-align: right;"><hr>
+             <p><strong>{{ data.totamounthead }}:</strong> {{ data.totalamtans }}</p>
+              <p><strong>{{ data.totalgsthead }}:</strong> {{ data.totalgstans }}</p>
+              <p><strong>{{ data.totalpayhead }}:</strong> {{ data.totalpayable }}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div style="background-color: #2e3d49; color: #fff; text-align: center; padding: 10px; font-size: 12px;">
+        <span style="margin: 0 10px;"><small>{{ data.text }}</small></span>
+      </div>
+    </div>
+

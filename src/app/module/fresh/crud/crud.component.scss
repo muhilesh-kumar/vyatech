@@ -1,0 +1,309 @@
+.red-hr {
+  border: 1px solid red;
+  margin: 10px 0;
+  }
+  
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  }
+  
+    .card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: #fff;
+    // border-bottom: none;
+    }
+  .card-header1 {
+  background-color: #fff; 
+  color: #000; 
+  padding: 0.2rem; 
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: none;
+  margin-bottom: 0;
+  font-size: 0.875rem; 
+  line-height: 1; 
+  }
+  
+  .card-header1 .row {
+  margin: 0; 
+  }
+  
+  .card-header1 .align-self-center {
+  padding: 0; 
+  }
+  
+  .card-header01 {
+  background-color: #fff;
+  color: #000;
+  padding: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding: 0.5rem;
+  }
+  
+  .card-body {
+  padding-top: 0;
+  }
+  
+  .table-responsive {
+    max-height: none; 
+    overflow: visible; 
+  }
+  
+  .invoice-title {
+  font-size: 24px;
+  margin: 0;
+  text-align: left;
+  }
+  
+  .logo {
+  max-width: 120px; 
+  margin-bottom: 10px;
+  }
+  
+  .company-info {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 5px;
+  }
+  
+  h5 {
+  margin-top: 20px;
+  font-size: larger;
+  color: #000;
+  }
+  
+  .table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  margin-bottom: 0 !important;
+  }
+  
+  .table th {
+  background-color: #f8f9fa;
+  color: #000;
+  padding: 10px;
+  border: 1px solid #ddd;
+  }
+  
+  .table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: center;
+  }
+  
+  .table td span.item-amount {
+  font-weight: bold;
+  }
+  
+  .summary-row {
+  font-weight: bold;
+  background-color: #e9ecef;
+  font-size: 16px;
+  }
+  
+  .text-right {
+  text-align: right;
+  }
+  
+  @media (max-width: 768px) {
+  .logo {
+    max-width: 100px;
+  }
+  
+  .invoice-title {
+    font-size: 20px;
+  }
+  
+  .company-info {
+    font-size: 12px;
+  }
+  
+  .invoice-header {
+    margin-bottom: 0 !important;
+  }
+  }
+  
+  .red-line {
+  border: 0;
+  height: 5px;
+  background-color: red;
+  margin: 10px 0;
+  opacity: 100%  !important;
+  }
+  
+  .date-box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  }
+  
+  .date-item {
+  flex: 1;
+  margin: 0 3px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  color: black;
+  }
+  
+  .date-item.red {
+  background-color: #ffcccc;
+  }
+  
+  
+  .date-item.orange {
+  background-color: #ffe5b4;
+  }
+  
+  .date-item.cement {
+  background-color: #f0f0f0;
+  }
+  
+  .date-item.blue {
+  background-color: #add8e6;
+  }
+  
+  .proforma-title {
+  font-size: 1.1rem; 
+  font-weight: bold; 
+  margin: 0; 
+  }
+  
+  
+  
+  
+  .signature {
+  text-align: center;
+  margin-top: 20px; 
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Mobile View - General Adjustments */
+  @media only screen and (max-width: 768px) {
+    .page {
+      transform: scale(0.5); /* Scale down to fit within A4 size */
+      transform-origin: top left;
+      // width: 210mm; /* A4 width */
+      // height: 130mm; /* A4 height */
+      margin: 0 5px; /* Center the page */
+      // overflow: hidden; /* Hide overflow */
+    }
+  
+    .scroll-mobile {
+      overflow-x: auto; /* Enables horizontal scroll only if needed */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+  
+    /* Table adjustments */
+    .table {
+      width: 100%;
+      font-size: medium;
+      margin: 3px 0;
+      table-layout: fixed; /* Ensure table cells fit */
+    }
+  
+    .table th, .table td {
+      padding: 1px; /* Reduce padding for compactness */
+      border: 1px solid #ddd;
+      text-align: center;
+      overflow: hidden; /* Prevent overflow */
+      white-space: nowrap; /* Prevent text wrapping */
+      font-size: medium;
+    }
+  
+    .table th {
+      background-color: #f8f9fa;
+    }
+  
+    /* Content adjustments */
+    .logo {
+      // max-width: 40px;
+      height: auto;
+    }
+  
+    .invoice-title {
+      font-size: 10px;
+      text-align: center;
+    }
+  
+    .company-info {
+      font-size: 5px;
+    }
+  
+    .date-item, .signature, .summary-row {
+      font-size: 4px;
+    }
+  
+    .date-box {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .date-item {
+      flex: 1;
+      padding: 4px;
+    }
+  
+    .proforma-title {
+      font-size: 0.5rem;
+    }
+  
+    .col-4, .col-8 {
+      font-size: larger;
+    }
+  
+    /* Reset margins and padding */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  
+    /* Text alignments */
+    .text-right, .text-center {
+      text-align: center;
+    }
+  }
+  
+  /* Ultra-Small Screen View - Additional scaling for very small screens */
+  @media only screen and (max-width: 1000px) {
+    .page {
+      transform: scale(0.37); /* Further scale down for ultra-small screens */
+      width: 210mm;
+      height: 110mm;
+    }
+  
+    .invoice-title, .company-info, .table, .date-item, .signature, .summary-row {
+      font-size: 15px; /* Smaller font size for ultra-small screens */
+    }
+  
+    .table th, .table td {
+      padding: 1px; /* Reduced padding for better fit */
+    }
+  
+    .proforma-title {
+      font-size: 0.8rem;
+    }
+  
+     strong {
+      font-weight: bolder;
+      // font-size: 70%;
+  }
+  }

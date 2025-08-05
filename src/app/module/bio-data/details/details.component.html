@@ -1,0 +1,314 @@
+<p-confirmDialog></p-confirmDialog>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i>Simple Table
+          <i class="fa fa-plus float-right" style="cursor: pointer;" (click)="show()"></i>
+          <i class="fa fa-upload float-right" style="cursor: pointer;" (click)="shownow()"></i>
+        </div>
+        <!-- <div class="card-body" style="overflow-y: auto; max-height: 400px;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>PhoneNumber</th>
+                <th>Married</th>
+                <th>Gender</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of biodata">
+
+                <td>{{ item.name }}</td>
+                <td>{{ item.dob }}</td>
+                <td>{{ item.phonenumber }}</td>
+                <td>{{ item.married }}</td>
+                <td>{{ item.gender }}</td>
+                <td>{{ item.status }}</td>
+                <td>
+                  <i style="color: green; cursor: pointer;" (click)="view(item.id)"
+                    class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;
+                  <i style="color:blue; cursor: pointer;" (click)="edit(item.id)" class="fa fa-edit"></i>&nbsp;&nbsp;
+                  <i style="color: red; cursor: pointer;" (click)="onDelete(item.id)" class="fa fa-trash"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div> -->
+
+
+      <p-table [value]="biodata"  [paginator]="true" (Page)="Page($event)"
+    [rows]="25" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>PhoneNumber</th>
+      <th>Married</th>
+      <th>Gender</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.dob }}</td>
+      <td>{{ item.phonenumber }}</td>
+      <td>{{ item.married }}</td>
+      <td>{{ item.gender }}</td>
+      <td>{{ item.status }}</td>
+      <td>
+        <i style="color: green; cursor: pointer;" (click)="view(item.id)" class="fa fa-eye fa-lg"></i>&nbsp;&nbsp;
+        <i style="color:blue; cursor: pointer;" (click)="edit(item.id)" class="fa fa-edit"></i>&nbsp;&nbsp;
+        <i style="color: red; cursor: pointer;" (click)="onDelete(item.id)" class="fa fa-trash"></i>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<p-dialog [header]="message" [(visible)]="showDialog" [modal]="true" [closable]="true" [style]="{width: '1200px'}">
+  <div class="card">
+    <div class="card-header">
+      <strong>
+        Personal Details
+      </strong>
+    </div>
+    <div class="card-body">
+      <div *ngIf="showDialog" class="full-page-form-container">
+        <div class="full-page-form-content">
+
+          <div class="form-body">
+            <form [formGroup]="userForm">
+              <!-- first row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                </div>
+                <div class="col-md-6">
+                  <input type="date" class="form-control" placeholder="DOB" formControlName="dob">
+                </div>
+              </div><br>
+
+              <!-- second row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="number" class="form-control" placeholder="PhoneNumber" formControlName="phonenumber">
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="e-mail" formControlName="email">
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label><strong>Marital</strong></label>
+                  <select class="form-control" formControlName="married">
+                    <option value="">Select Marital Status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label><strong>Gender</strong></label>
+                  <select class="form-control" formControlName="gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="me-2 mt-4"><strong>Status:</strong></label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="statusYes" value="yes" formControlName="status">
+                    <label class="form-check-label" for="statusYes">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="statusNo" value="no" formControlName="status">
+                    <label class="form-check-label" for="statusNo">No</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- address section -->
+              <div class="card mt-4">
+                <div class="card-header">
+                  <label class="mb-2"><strong>Addresses:</strong></label>
+                  
+                </div><i *ngIf="addmode" class="fa fa-plus" style="float: right;" (click)="addaddress()"></i>
+                <div class="card-body">
+                  <div formArrayName="addresses">
+                    <table class="table table-bordered mt-2">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Type</th>
+                          <th>Address Line</th>
+                          <th>District</th>
+                          <th>City</th>
+                          <th>State</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let addr of addressar.controls; let i = index" [formGroupName]="i">
+                          <td> <select class="form-control" id="type" formControlName="type">
+                              <option value="" disabled selected>Select Type</option>
+                              <option value="Permanent">Permanent</option>
+                              <option value="Current">Current</option>
+                            </select></td>
+                          <td><input type="text" class="form-control" placeholder="Address Line"
+                              formControlName="addressLine">
+                          </td>
+                          <td><input type="text" class="form-control" placeholder="District" formControlName="district">
+                          </td>
+                          <td><input type="text" class="form-control" placeholder="City" formControlName="city"></td>
+                          <td><input type="text" class="form-control" placeholder="State" formControlName="state"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <br>
+
+
+              <!-- fourth row -->
+
+            </form>
+          </div><br>
+
+          <div class="form-footer mt-3 d-flex justify-content-end gap-2">
+            <button *ngIf="fedited" type="button" class="btn btn-success" (click)="adduser()">Save</button>
+            <button *ngIf="edited" type="button" class="btn btn-primary" (click)="update()">Update</button>
+            <button type="button" class="btn btn-secondary" (click)="showDialog = false">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</p-dialog>
+
+
+
+
+<p-dialog [(visible)]="shownowDialog" [modal]="true" [closable]="true" [style]="{ width: '900px' }">
+
+  <p-tabView>
+    <p-tabPanel header="Upload">
+      <div class="container mt-4">
+        <div class="d-flex justify-content-center align-items-center gap-1">
+          <button type="button" class="btn btn-primary" (click)="downloadTemplate()">Download Template</button>
+
+          <input type="file" class="form-control" id="customFile" style="width: 250px;"
+            (change)="fileSelected($event)" />
+
+          <button type="button" class="btn btn-success" (click)="uploadFile()"
+            [disabled]="!selectedFile">Upload</button>
+          <div *ngIf="fileError" class="mt-3 alert alert-danger">
+            {{ fileError }}
+            <button type="button" class="btn btn-sm btn-secondary ml-2" (click)="clearError()">OK</button>
+          </div>
+        </div>
+      </div>
+
+    </p-tabPanel>
+    <!-- second tab -->
+
+    <p-tabPanel header="Preview" *ngIf="previewdata">
+      <div class="table-responsive mt-4" *ngIf="dataSource.length">
+        <p-table [value]="dataSource" [tableStyle]="{'min-width': '50rem'}" dataKey="name" [rowGroupMode]="'subheader'"
+          groupRowsBy="name" sortMode="single" sortField="name">
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem"></th>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>PhoneNumber</th>
+              <th>Married</th>
+              <th>Gender</th>
+              <th>Status</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-expe let-rowIndex="rowIndex" let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="expe"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                </button>
+              </td>
+              <td>{{ expe.name }}</td>
+              <td>{{ expe.dob }}</td>
+              <td>{{ expe.phonenumber }}</td>
+              <td>{{ expe.married }}</td>
+              <td>{{ expe.gender }}</td>
+              <td>{{ expe.status }}</td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="rowexpansion" let-expe>
+            <tr *ngFor="let addr of expe.addresses">
+              <td colspan="7">
+                <div class="card-body">
+                  <table class="table table-bordered w-full">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>AddressLine</th>
+                        <th>District</th>
+                        <th>City</th>
+                        <th>State</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ addr.type }}</td>
+                        <td>{{ addr.addressLine }}</td>
+                        <td>{{ addr.district }}</td>
+                        <td>{{ addr.city }}</td>
+                        <td>{{ addr.state }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="mt-3 text-right">
+          <button class="btn btn-primary mr-2" (click)="onSave()">Save</button>
+          <button class="btn btn-danger" (click)="cancelPreview()">Cancel</button>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+
+</p-dialog>

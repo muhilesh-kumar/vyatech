@@ -1,0 +1,352 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="card">
+  <div class="card-header">
+    Expense
+    <div class="dropdown float-right position-relative" style="display: inline-block;">
+  <i class="fa fa-plus ms-4" style="cursor: pointer;" (click)="open()"></i>
+  <i class="fa fa-snowflake-o ms-4" style="cursor: pointer;" (click)="snowns = !snowns" [class.show]="snowns" [attr.aria-expanded]="snowns"></i>
+  <ul class="dropdown-menu" *ngIf="snowns" [class.show]="snowns"
+      style="position: absolute; left: -70px; top: 30px; z-index: 1050; display: flex; background-color: white; padding: 5px; border-radius: 5px;">
+    <li><i class="fa fa-table m-2" style="cursor: pointer; font-size: 1rem;" title="Table View" (click)="table()"></i></li>
+    <li><i class="fa fa-th-large m-2" style="cursor: pointer; font-size: 1rem;" title="Grid View" (click)="grid()"></i></li>
+    <li><i class="fa fa-address-card-o m-2" style="cursor: pointer; font-size: 1rem;" title="Card View" (click)="card()"></i></li>
+    <li><i class="fa fa-list-ul m-2" style="cursor: pointer; font-size: 1rem;" title="List View" (click)="list()"></i></li>
+  </ul>
+</div>
+
+  </div>
+
+  <div class="card-body">
+    <div class="card-body" *ngIf="tabs">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of paged">
+            <td>{{ expense.name }}</td>
+            <td>{{ expense.category }}</td>
+            <td>{{ expense.date | date: 'mediumDate' }}</td>
+            <td>{{ expense.status }}</td>
+            <td>{{ expense.amount | currency }}</td>
+            <td>
+              <button (click)="view(expense)"><i class="fa fa-eye"></i></button>
+              <button (click)="edit(expense)"><i class="fa fa-edit"></i></button>
+              <button (click)="delete(expense.id)"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p-paginator [first]="first" [rows]="rows" [totalRecords]="expenses.length"
+        (onPageChange)="onPageChange($event)"></p-paginator>
+    </div>
+
+    <div class="row" *ngIf="grids">
+      <div class="col-md-3" *ngFor="let expense of paged">
+        <div class="card mb-2" style="padding: 10px; font-size: 12px;">
+          <div class="card-body p-2" style="position: relative;">
+            <div style="position: absolute; top: 5px; right: 10px; font-size: 20px;">
+              <a (click)="view(expense)" style="margin-right: 5px;cursor: pointer; color: #28a745;">
+                <i class="fa fa-eye"></i>
+              </a>
+              <a (click)="edit(expense)" style="margin-right: 5px; cursor: pointer; color: #007bff;">
+                <i class="fa fa-edit"></i>
+              </a>
+              <i (click)="delete(expense.id)" class="fa fa-trash"
+                style="margin-right: 5px; cursor: pointer; color:#dc3545;"></i>
+            </div>
+            <p class="card-text mb-1"><strong>Name:</strong> {{ expense.name }}</p>
+            <p class="card-text mb-1"><strong>Category:</strong> {{ expense.category }}</p>
+            <p class="card-text mb-1"><strong>Date:</strong> {{ expense.date | date: 'mediumDate' }}</p>
+            <p class="card-text mb-1"><strong>Status:</strong> {{ expense.status }}</p>
+            <p class="card-text mb-1"><strong>Amount:</strong> {{ expense.amount | currency }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center w-100 mt-3">
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="expenses.length"
+          (onPageChange)="onPageChange($event)"></p-paginator>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="cards">
+      <div class="col-md-4" *ngFor="let expense of paged">
+        <div class="card mb-2" style="padding: 10px; font-size: 12px;">
+          <div class="card-body p-2" style="position: relative;">
+            <div style="position: absolute; top: 5px; right: 10px; font-size: 20px;">
+              <a (click)="view(expense)" style="margin-right: 5px;cursor: pointer; color: #28a745;">
+                <i class="fa fa-eye"></i>
+              </a>
+              <a (click)="edit(expense)" style="margin-right: 5px; cursor: pointer; color: #007bff;">
+                <i class="fa fa-edit"></i>
+              </a>
+              <i (click)="delete(expense.id)" class="fa fa-trash"
+                style="margin-right: 5px; cursor: pointer; color: #dc3545;"></i>
+            </div>
+            <p class="card-text mb-1"><strong>Name:</strong> {{ expense.name }}</p>
+            <p class="card-text mb-1"><strong>Category:</strong> {{ expense.category }}</p>
+            <p class="card-text mb-1"><strong>Date:</strong> {{ expense.date | date: 'mediumDate' }}</p>
+            <p class="card-text mb-1"><strong>Status:</strong> {{ expense.status }}</p>
+            <p class="card-text mb-1"><strong>Amount:</strong> {{ expense.amount | currency }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3 w-100">
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="expenses.length"
+          (onPageChange)="onPageChange($event)"></p-paginator>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="lists">
+      <div class="col-md-12" *ngFor="let expense of paged">
+        <div class="card mb-2" style="padding: 10px; font-size: 12px;">
+          <div class="card-body p-2 d-flex align-items-center" style="position: relative;">
+            <div style="position: absolute; top: 5px; right: 10px; font-size: 20px;">
+              <a (click)="view(expense)" style="margin-right: 5px;cursor: pointer; color: #28a745;">
+                <i class="fa fa-eye"></i>
+              </a>
+              <a (click)="edit(expense)" style="margin-right: 5px; cursor: pointer; color: #007bff;">
+                <i class="fa fa-edit"></i>
+              </a>
+              <i (click)="delete(expense.id)" class="fa fa-trash"
+                style="margin-right: 5px; cursor: pointer; color: #dc3545;"></i>
+            </div>
+            <div class="d-flex flex-wrap">
+              <p class="card-text mb-1 me-3"><strong>Name:</strong> {{ expense.name }}</p>
+              <p class="card-text mb-1 me-3"><strong>Category:</strong> {{ expense.category }}</p>
+              <p class="card-text mb-1 me-3"><strong>Date:</strong> {{ expense.date | date: 'mediumDate' }}</p>
+              <p class="card-text mb-1 me-3"><strong>Status:</strong> {{ expense.status }}</p>
+              <p class="card-text mb-1 me-3"><strong>Amount:</strong> {{ expense.amount | currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3 w-100">
+        <p-paginator [first]="first" [rows]="rows" [totalRecords]="expenses.length"
+          (onPageChange)="onPageChange($event)"></p-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="show" class="modal fade show d-block position-fixed w-100" style=" z-index: 1050;">
+  <div class="modal-dialog modal-lg mx-auto mt-4" style="width: 1000px;">
+    <div class="modal-content d-flex flex-column" style="max-height: 90vh;">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ viewMode ? 'View' : (formGroup.value.id ? 'Edit' : 'Add') }} Expense
+        </h5>
+        <button class="close" (click)="close()"><span>&times;</span></button>
+      </div>
+
+      <form [formGroup]="formGroup" (ngSubmit)="saveExpense()" style="overflow-y: auto; flex-grow: 1; padding: 1rem">
+        
+       
+        
+
+        
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card h-100 shadow-lg">
+      <div class="card-header bg-primary bg-gradient text-white" >
+              <h5 class="card-title mb-0">Basic Information</h5>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label fw-semibold"><strong>Name</strong></label>
+          <input type="text" class="form-control rounded-1 border-secondary" 
+                 formControlName="name" [readonly]="viewMode" placeholder="Enter name" />
+          <div *ngIf="formGroup.get('name')?.invalid && (formGroup.get('name')?.dirty || formGroup.get('name')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('name')?.errors?.['required']">Name is required</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold"><strong>Category</strong></label>
+          <select class="form-select rounded-1 border-secondary" 
+                  formControlName="category" [disabled]="viewMode">
+            <option value="">Select category</option>
+            <option *ngFor="let cat of categories">{{ cat }}</option>
+          </select>
+          <div *ngIf="formGroup.get('category')?.invalid && (formGroup.get('category')?.dirty || formGroup.get('category')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('category')?.errors?.['required']">Category is required</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card h-100 shadow-lg">
+      <div class="card-header text-white bg-success bg-gradient">
+        <h5 class="card-title mb-0">Date Information</h5>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label fw-semibold"><strong>Date</strong></label>
+          <input type="date" class="form-control rounded-1 border-secondary" 
+                 formControlName="date" [readonly]="viewMode" />
+          <div *ngIf="formGroup.get('date')?.invalid && (formGroup.get('date')?.dirty || formGroup.get('date')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('date')?.errors?.['required']">Date is required</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold"><strong>Expense By</strong></label>
+          <input type="text" class="form-control rounded-1 border-secondary" 
+                 formControlName="expBy" [readonly]="viewMode" placeholder="Enter name" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card h-100 shadow-lg">
+      <div class="card-header text-white bg-primary bg-gradient">
+        <h5 class="card-title mb-0">Type Information</h5>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label fw-semibold"><strong>Type</strong></label>
+          <select class="form-select rounded-1 border-secondary" 
+                  formControlName="type" [disabled]="viewMode">
+            <option value="">Select type</option>
+            <option *ngFor="let type of types">{{ type }}</option>
+          </select>
+          <div *ngIf="formGroup.get('type')?.invalid && (formGroup.get('type')?.dirty || formGroup.get('type')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('type')?.errors?.['required']">Type is required</small>
+          </div>
+        </div>
+        <div class="mb-1">
+          <label class="form-label fw-semibold"><strong>Status</strong></label>
+          <select class="form-select rounded-1 border-secondary" 
+                  formControlName="status" [disabled]="viewMode">
+            <option *ngFor="let state of status">{{ state }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card h-100 shadow-lg">
+      <div class="card-header text-white bg-success bg-gradient">
+       <h5 class="card-title mb-0">Contact Information</h5>
+    </div>
+    <div class="card-body p-2">
+      <div class="small-text"> 
+        <div class="mb-2"> 
+          <label class="form-label fw-semibold small d-block"><strong>Email</strong></label> 
+          <input type="email" class="form-control form-control-sm rounded-1 border-secondary" 
+                 formControlName="email" [readonly]="viewMode" placeholder="example@domain.com" />
+          <div *ngIf="formGroup.get('email')?.invalid && (formGroup.get('email')?.dirty || formGroup.get('email')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('email')?.errors?.['required']">Email is required</small>
+            <small *ngIf="formGroup.get('email')?.errors?.['email']">Invalid email format</small>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label fw-semibold small d-block"><strong>Phone</strong></label>
+          <input type="tel" class="form-control form-control-sm rounded-1 border-secondary" 
+                 formControlName="phoneNumber" [readonly]="viewMode" placeholder="1234567890" />
+          <div *ngIf="formGroup.get('phoneNumber')?.invalid && (formGroup.get('phoneNumber')?.dirty || formGroup.get('phoneNumber')?.touched)" 
+               class="text-danger mt-1 small">
+            <small *ngIf="formGroup.get('phoneNumber')?.errors?.['required']">Phone is required</small>
+            <small *ngIf="formGroup.get('phoneNumber')?.errors?.['pattern']">10 digits required</small>
+          </div>
+        </div>
+        <div class="mb-0">
+          <label class="form-label fw-semibold small d-block"><strong>Submitted By</strong></label>
+          <input type="text" class="form-control form-control-sm rounded-1 border-secondary" 
+                 formControlName="submittedBy" [readonly]="viewMode" placeholder="Enter name" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+        <div class="card mt-3 shadow-lg">
+          <div class="card-header bg-secondary bg-gradient text-black">
+            <strong>ITEM Details</strong>
+            <i class="fa fa-plus float-right" style="cursor: pointer" (click)="addItem()" *ngIf="!viewMode"></i>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Date/Time</th>
+                  <th>Image</th>
+                  <th>Amount</th>
+                  <th *ngIf="!viewMode">Action</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="items">
+                <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+                  <td>
+                    <input class="form-control" formControlName="type" placeholder="type" [disabled]="viewMode" />
+                    <div *ngIf="items.at(i).get('type')?.invalid && (items.at(i).get('type')?.dirty || items.at(i).get('type')?.touched)" class="text-danger">
+                      <small *ngIf="items.at(i).get('type')?.errors?.['required']">Required</small>
+                    </div>
+                  </td>
+                  <td>
+                    <input class="form-control" type="datetime-local" formControlName="date" [readonly]="viewMode" />
+                  </td>
+                  <td>
+                    <input class="form-control" type="file" (change)="onFileChange($event, i)" multiple [disabled]="viewMode" />
+                    <div class="d-flex flex-wrap mt-2" *ngIf="item.get('image')?.value?.length">
+                      <ng-container *ngFor="let img of item.get('image')?.value; let j = index">
+                        <p-image [src]="img.url || img" [alt]="img.file?.name || 'Image'" width="60" height="60" [preview]="true"></p-image>
+                        <i class="fa fa-trash ms-2" (click)="removeImage(i, j)"></i>
+                      </ng-container>
+                    </div>
+                  </td>
+                  <td>
+                    <input class="form-control" type="number" formControlName="amount" [readonly]="viewMode" />
+                    <div *ngIf="items.at(i).get('amount')?.invalid && (items.at(i).get('amount')?.dirty || items.at(i).get('amount')?.touched)" class="text-danger">
+                      <small *ngIf="items.at(i).get('amount')?.errors?.['required']">Required</small>
+                      <small *ngIf="items.at(i).get('amount')?.errors?.['min']">Min value 1</small>
+                    </div>
+                  </td>
+                  <td *ngIf="!viewMode">
+                    <button class="btn btn-danger btn-sm" (click)="removeItem(i)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-right font-weight-bold"></td>
+                  <td><strong>Total: ₹{{ Total() }}</strong></td>
+                  <td *ngIf="!viewMode"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+          <button type="submit" class="btn btn-primary" *ngIf="!viewMode" [disabled]="formGroup.invalid">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

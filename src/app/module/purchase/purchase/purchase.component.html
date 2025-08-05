@@ -1,0 +1,167 @@
+
+ <div style="max-width: 210mm; width: 100%; min-height: 100vh; background-color: white; margin: 0 auto; font-family: Arial, sans-serif; font-size: clamp(12px, 2vw, 14px); border: 1px solid #000; padding: 5%; box-sizing: border-box;">
+  <br>
+  <!-- Header (Flexible for both screens) -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+    <img src="{{ image }}" alt="staff photo" style="border-radius: 0.25rem; max-width: 120px; height: auto; object-fit: cover;" />
+    <h2 style="margin: 0; font-size: clamp(1.25rem, 4vw, 1.5rem);">Price quotation</h2>
+  </div>
+  
+  <br>
+  <span style="display: block; height: 2px; background-color: black;"></span>
+  <br>
+ <table class="table-bordered" width="100%" cellpadding="6" cellspacing="0" style="border: 1px; border-collapse: collapse; margin: 0;">
+  <tr>
+    <th width="50%" style="border: 1px solid #000;">From</th>
+    <th width="50%" style="border: 1px solid #000;">To</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;"><strong>Name: </strong>{{ companyName }}</td>
+    <td style="border: 1px solid #000;"><strong>Name: </strong>{{ customerName }}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;"><strong>Address: </strong>{{ address }}</td>
+    <td style="border: 1px solid #000;"><strong>Address: </strong>{{ customerBilling }}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;"><strong>GSTIN:</strong></td>
+    <td style="border: 1px solid #000;"><strong>GSTIN:</strong></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;"><strong>Phone#/Email:</strong> {{ contactNumber }} / {{ gMail }}</td>
+    <td style="border: 1px solid #000;"><strong>Phone#/Email:</strong> {{ customerEmail }}</td>
+  </tr>
+</table>
+<table class="table table-bordered" width="100%" cellpadding="6" cellspacing="0"
+       style="margin-bottom: 0px;  margin-top: 1px; border-collapse: collapse;">
+  <tr>
+    <td style="border: 1px solid #000;"><strong>Date:</strong> {{ BillDate }}</td>
+    <td style="border: 1px solid #000;"><strong>Total Payable:</strong> {{ totalAmount }}</td>
+  </tr>
+</table>
+
+  <!-- Items Table (Scrollable on mobile) -->
+  <div style="overflow-x: auto;">
+    <table class="table table-bordered" width="100%" cellpadding="6" cellspacing="0"
+       style="border: 1px solid; border-collapse: collapse; margin-top: 1px; text-align: center;">
+  <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Item Code</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Description</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Rate</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">UOM</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Discount</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Quantity</th>
+        <th style="border: 1px solid #000; padding: 6px; white-space: nowrap;">Amount ({{ currency }})</th>
+      </tr>
+      
+      <tr>
+        <td style="border: 1px solid #000; padding: 6px;">ITM-1001</td>
+        <td style="border: 1px solid #000; padding: 6px;">LUBE OIL & MGO FOR VOYAGE</td>
+        <td style="border: 1px solid #000; padding: 6px;">₹3,000.00</td>
+        <td style="border: 1px solid #000; padding: 6px;">LTRS</td>
+        <td style="border: 1px solid #000; padding: 6px;">10</td>
+        <td style="border: 1px solid #000; padding: 6px;">₹0.00</td>
+        <td style="border: 1px solid #000; padding: 6px;">₹30,000.00</td>
+      </tr>
+      <tr>
+    <td style="border: 1px solid #000; padding: 6px;">ITM-1001</td>
+    <td style="border: 1px solid #000; padding: 6px;">LUBE OIL & MGO FOR VOYAGE</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹3,000.00</td>
+    <td style="border: 1px solid #000; padding: 6px;">LTRS</td>
+    <td style="border: 1px solid #000; padding: 6px;">10</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹30,000.00</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000; padding: 6px;">ITM-1002</td>
+    <td style="border: 1px solid #000; padding: 6px;">FRESH WATER MAKER SPARES</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹1,500.00</td>
+    <td style="border: 1px solid #000; padding: 6px;">PCS</td>
+    <td style="border: 1px solid #000; padding: 6px;">10</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000; padding: 6px;">₹15,000.00</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;padding: 6px;">ITM-1001</td>
+    <td style="border: 1px solid #000;padding: 6px;">LUBE OIL & MGO FOR VOYAGE</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹3,000.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">LTRS</td>
+    <td style="border: 1px solid #000;padding: 6px;">10</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹30,000.00</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;padding: 6px;">ITM-1002</td>
+    <td style="border: 1px solid #000;padding: 6px;">FRESH WATER MAKER SPARES</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹1,500.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">PCS</td>
+    <td style="border: 1px solid #000;padding: 6px;">10</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹15,000.00</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;padding: 6px;">ITM-1001</td>
+    <td style="border: 1px solid #000;padding: 6px;">LUBE OIL & MGO FOR VOYAGE</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹3,000.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">LTRS</td>
+    <td style="border: 1px solid #000;padding: 6px;">10</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹30,000.00</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #000;padding: 6px;">ITM-1002</td>
+    <td style="border: 1px solid #000;padding: 6px;">FRESH WATER MAKER SPARES</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹1,500.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">PCS</td>
+    <td style="border: 1px solid #000;padding: 6px;">10</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹0.00</td>
+    <td style="border: 1px solid #000;padding: 6px;">₹15,000.00</td>
+  </tr>
+    </table>
+    
+  </div>
+  
+
+
+  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+    <div style="flex: 2; min-width: 250px;">
+      <strong>TERMS & CONDITIONS:</strong><br><br>
+      <ul style="margin-bottom: 0; padding-left: 1rem;">
+        <li *ngFor="let term of terms">{{ term.name }}</li>
+      </ul>
+    </div>
+    
+    <div style="flex: 1; min-width: 200px;">
+      <table width="100%" style="border-collapse: collapse;">
+        <tr>
+          <td style="border: 1px solid #000; padding: 6px;"><strong>Total qty :</strong></td>
+          <td style="border: 1px solid #000; padding: 6px;">{{ totalQuantity }}</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #000; padding: 6px;"><strong>Total Payable:</strong></td>
+          <td style="border: 1px solid #000; padding: 6px;">{{ totalAmount }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

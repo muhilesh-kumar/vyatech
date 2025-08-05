@@ -22,22 +22,32 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": ["src/assets", "src/.htaccess"],
+                        "assets": [
+                            "src/assets",
+                            "src/.htaccess"
+                        ],
                         "styles": [
                             "node_modules/ngx-toastr/toastr.css",
                             "node_modules/@coreui/icons/css/coreui-icons.css",
                             "node_modules/flag-icon-css/css/flag-icon.css",
                             "node_modules/font-awesome/css/font-awesome.css",
                             "node_modules/simple-line-icons/css/simple-line-icons.css",
+                            "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "node_modules/primeicons/primeicons.css",
                             "src/scss/style.scss"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["./node_modules"]
+                            "includePaths": [
+                                "./node_modules"
+                            ]
                         },
                         "scripts": [
                             "node_modules/chart.js/dist/Chart.min.js",
-                            "node_modules/jquery/dist/jquery.js"
-
+                            "node_modules/jquery/dist/jquery.js",
+                            "node_modules/jspdf/dist/jspdf.umd.min.js",
+                            "node_modules/html2canvas/dist/html2canvas.min.js",
+                            "node_modules/pdfjs-dist/build/pdf.worker.min.js"
                         ],
                         "vendorChunk": true,
                         "extractLicenses": false,
@@ -56,7 +66,7 @@
                             ],
                             "optimization": true,
                             "outputHashing": "all",
-                            "sourceMap": false,
+                            "sourceMap": true,
                             "namedChunks": false,
                             "extractLicenses": true,
                             "vendorChunk": false,
@@ -101,7 +111,15 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
-                        "assets": ["src/assets", "src/.htaccess"],
+                        "assets": [
+                            "src/assets",
+                            "src/.htaccess",
+                            {
+                                "glob": "pdf.worker.min.js",
+                                "input": "node_modules/pdfjs-dist/build/",
+                                "output": "/assets/"
+                            }
+                        ],
                         "styles": [
                             "node_modules/ngx-toastr/toastr.css",
                             "node_modules/flag-icon-css/css/flag-icon.css",
@@ -118,15 +136,23 @@
                             "node_modules/slickgrid/lib/jquery.event.drag-2.3.0.js"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["./node_modules"]
+                            "includePaths": [
+                                "./node_modules"
+                            ]
                         }
                     }
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.e2e.json"],
-                        "exclude": ["**/node_modules/**"]
+                        "tsConfig": [
+                            "tsconfig.app.json",
+                            "tsconfig.spec.json",
+                            "e2e/tsconfig.e2e.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
                     }
                 },
                 "e2e": {
@@ -158,8 +184,12 @@
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["e2e/tsconfig.e2e.json"],
-                        "exclude": ["**/node_modules/**"]
+                        "tsConfig": [
+                            "e2e/tsconfig.e2e.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
                     }
                 }
             }
