@@ -86,7 +86,7 @@ class ApiService {
     }
     getAll() {
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('assets/data/db.json');
+            return this.http.get('https://muhilesh-kumar.github.io/vyatech/assets/data/db.json');
         }
         else {
             return this.http.get(this.baseUrl);
