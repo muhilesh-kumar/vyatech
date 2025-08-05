@@ -85,9 +85,8 @@ class ApiService {
         this.baseUrl = "http://localhost:3000/menu";
     }
     getAll() {
-        // Use local db.json when deployed on GitHub Pages
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('assets/data/db.json');
+            return this.http.get('/vyatech/assets/data/db.json');
         }
         return this.http.get(this.baseUrl);
     }
