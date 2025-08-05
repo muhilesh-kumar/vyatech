@@ -87,7 +87,7 @@ class ApiService {
     getAll() {
         // Use local db.json when deployed on GitHub Pages
         if (location.hostname === 'muhilesh-kumar.github.io') {
-            return this.http.get('assets/data/menu.json'); // <-- static read-only JSON
+            return this.http.get('assets/data/db.json');
         }
         return this.http.get(this.baseUrl);
     }
